@@ -1,6 +1,1 @@
-you are stupid
-who is that
-I am your dad
-no you are not
-This is a check
-who is that
+This is just a demonstration file for working on git commands
