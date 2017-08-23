@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes 
+CXX_INCLUDES = -I/home/gd0/git/repo/FizzBuzz_generic_v2/FizzBuzz_classes 
 

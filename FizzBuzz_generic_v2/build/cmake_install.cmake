@@ -1,4 +1,4 @@
-# Install script for directory: /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2
+# Install script for directory: /home/gd0/git/repo/FizzBuzz_generic_v2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes/cmake_install.cmake")
+  include("/home/gd0/git/repo/FizzBuzz_generic_v2/build/FizzBuzz_classes/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/gd0/git/repo/FizzBuzz_generic_v2/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
