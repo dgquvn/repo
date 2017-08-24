@@ -29,4 +29,8 @@ iostream
 -
 inputProperties.h
 /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes/tests/inputProperties.h
+FizzBuzz_config.hpp
+/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes/tests/FizzBuzz_config.hpp
+
+FizzBuzz_config.hpp
 

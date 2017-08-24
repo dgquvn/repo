@@ -43,7 +43,7 @@
 
 class inputProperties{
 public:
-    inputProperties() {}
+    inputProperties(const std::unordered_map<std::string, std::string>& input_mp);
     inputProperties(std::string& file_loc);
     const std::unordered_map<std::string, std::string>& getVar() const;
 private:

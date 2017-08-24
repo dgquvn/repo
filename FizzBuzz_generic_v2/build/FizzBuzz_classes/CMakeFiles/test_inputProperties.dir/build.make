@@ -90,6 +90,7 @@ test_inputProperties_EXTERNAL_OBJECTS =
 
 FizzBuzz_classes/test_inputProperties: FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.o
 FizzBuzz_classes/test_inputProperties: FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build.make
+FizzBuzz_classes/test_inputProperties: FizzBuzz_classes/libFizzBuzz_classes.a
 FizzBuzz_classes/test_inputProperties: FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_inputProperties"
 	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_inputProperties.dir/link.txt --verbose=$(VERBOSE)

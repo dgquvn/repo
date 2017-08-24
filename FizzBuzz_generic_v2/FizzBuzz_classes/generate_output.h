@@ -40,7 +40,7 @@
 
 class generate_output{
 public:
-    generate_output() {}
+    generate_output(const std::vector<std::string>& op);
     generate_output(variables& a);
 	std::vector<std::string>& getOutput();
 private:

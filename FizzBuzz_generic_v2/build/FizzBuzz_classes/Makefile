@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,28 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,6 +122,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+FizzBuzz_classes/CMakeFiles/test_generate_output.dir/rule:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f CMakeFiles/Makefile2 FizzBuzz_classes/CMakeFiles/test_generate_output.dir/rule
+.PHONY : FizzBuzz_classes/CMakeFiles/test_generate_output.dir/rule
+
+# Convenience name for target.
+test_generate_output: FizzBuzz_classes/CMakeFiles/test_generate_output.dir/rule
+
+.PHONY : test_generate_output
+
+# fast build rule for target.
+test_generate_output/fast:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build.make FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build
+.PHONY : test_generate_output/fast
+
+# Convenience name for target.
+FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/rule:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f CMakeFiles/Makefile2 FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/rule
+.PHONY : FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/rule
+
+# Convenience name for target.
+test_inputProperties: FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/rule
+
+.PHONY : test_inputProperties
+
+# fast build rule for target.
+test_inputProperties/fast:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build.make FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build
+.PHONY : test_inputProperties/fast
+
+# Convenience name for target.
 FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/rule:
 	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f CMakeFiles/Makefile2 FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/rule
 .PHONY : FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/rule
@@ -124,6 +165,21 @@ FizzBuzz_classes: FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/rule
 FizzBuzz_classes/fast:
 	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/build.make FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/build
 .PHONY : FizzBuzz_classes/fast
+
+# Convenience name for target.
+FizzBuzz_classes/CMakeFiles/test_variables.dir/rule:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f CMakeFiles/Makefile2 FizzBuzz_classes/CMakeFiles/test_variables.dir/rule
+.PHONY : FizzBuzz_classes/CMakeFiles/test_variables.dir/rule
+
+# Convenience name for target.
+test_variables: FizzBuzz_classes/CMakeFiles/test_variables.dir/rule
+
+.PHONY : test_variables
+
+# fast build rule for target.
+test_variables/fast:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_variables.dir/build.make FizzBuzz_classes/CMakeFiles/test_variables.dir/build
+.PHONY : test_variables/fast
 
 Controller.o: Controller.cpp.o
 
@@ -206,6 +262,87 @@ inputProperties.cpp.s:
 	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/build.make FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/inputProperties.cpp.s
 .PHONY : inputProperties.cpp.s
 
+tests/test_generate_output.o: tests/test_generate_output.cpp.o
+
+.PHONY : tests/test_generate_output.o
+
+# target to build an object file
+tests/test_generate_output.cpp.o:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build.make FizzBuzz_classes/CMakeFiles/test_generate_output.dir/tests/test_generate_output.cpp.o
+.PHONY : tests/test_generate_output.cpp.o
+
+tests/test_generate_output.i: tests/test_generate_output.cpp.i
+
+.PHONY : tests/test_generate_output.i
+
+# target to preprocess a source file
+tests/test_generate_output.cpp.i:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build.make FizzBuzz_classes/CMakeFiles/test_generate_output.dir/tests/test_generate_output.cpp.i
+.PHONY : tests/test_generate_output.cpp.i
+
+tests/test_generate_output.s: tests/test_generate_output.cpp.s
+
+.PHONY : tests/test_generate_output.s
+
+# target to generate assembly for a file
+tests/test_generate_output.cpp.s:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build.make FizzBuzz_classes/CMakeFiles/test_generate_output.dir/tests/test_generate_output.cpp.s
+.PHONY : tests/test_generate_output.cpp.s
+
+tests/test_inputProperties.o: tests/test_inputProperties.cpp.o
+
+.PHONY : tests/test_inputProperties.o
+
+# target to build an object file
+tests/test_inputProperties.cpp.o:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build.make FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.o
+.PHONY : tests/test_inputProperties.cpp.o
+
+tests/test_inputProperties.i: tests/test_inputProperties.cpp.i
+
+.PHONY : tests/test_inputProperties.i
+
+# target to preprocess a source file
+tests/test_inputProperties.cpp.i:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build.make FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.i
+.PHONY : tests/test_inputProperties.cpp.i
+
+tests/test_inputProperties.s: tests/test_inputProperties.cpp.s
+
+.PHONY : tests/test_inputProperties.s
+
+# target to generate assembly for a file
+tests/test_inputProperties.cpp.s:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build.make FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.s
+.PHONY : tests/test_inputProperties.cpp.s
+
+tests/test_variables.o: tests/test_variables.cpp.o
+
+.PHONY : tests/test_variables.o
+
+# target to build an object file
+tests/test_variables.cpp.o:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_variables.dir/build.make FizzBuzz_classes/CMakeFiles/test_variables.dir/tests/test_variables.cpp.o
+.PHONY : tests/test_variables.cpp.o
+
+tests/test_variables.i: tests/test_variables.cpp.i
+
+.PHONY : tests/test_variables.i
+
+# target to preprocess a source file
+tests/test_variables.cpp.i:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_variables.dir/build.make FizzBuzz_classes/CMakeFiles/test_variables.dir/tests/test_variables.cpp.i
+.PHONY : tests/test_variables.cpp.i
+
+tests/test_variables.s: tests/test_variables.cpp.s
+
+.PHONY : tests/test_variables.s
+
+# target to generate assembly for a file
+tests/test_variables.cpp.s:
+	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build && $(MAKE) -f FizzBuzz_classes/CMakeFiles/test_variables.dir/build.make FizzBuzz_classes/CMakeFiles/test_variables.dir/tests/test_variables.cpp.s
+.PHONY : tests/test_variables.cpp.s
+
 variables.o: variables.cpp.o
 
 .PHONY : variables.o
@@ -266,9 +403,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... test_generate_output"
+	@echo "... edit_cache"
+	@echo "... test_inputProperties"
 	@echo "... FizzBuzz_classes"
+	@echo "... test_variables"
 	@echo "... Controller.o"
 	@echo "... Controller.i"
 	@echo "... Controller.s"
@@ -278,6 +419,15 @@ help:
 	@echo "... inputProperties.o"
 	@echo "... inputProperties.i"
 	@echo "... inputProperties.s"
+	@echo "... tests/test_generate_output.o"
+	@echo "... tests/test_generate_output.i"
+	@echo "... tests/test_generate_output.s"
+	@echo "... tests/test_inputProperties.o"
+	@echo "... tests/test_inputProperties.i"
+	@echo "... tests/test_inputProperties.s"
+	@echo "... tests/test_variables.o"
+	@echo "... tests/test_variables.i"
+	@echo "... tests/test_variables.s"
 	@echo "... variables.o"
 	@echo "... variables.i"
 	@echo "... variables.s"

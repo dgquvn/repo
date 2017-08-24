@@ -1,0 +1,5 @@
+max_int = 100
+lower_divisor = 3
+upper_divisor = 5
+lower_divisor_label = Fizz
+upper_divisor_label = Buzz

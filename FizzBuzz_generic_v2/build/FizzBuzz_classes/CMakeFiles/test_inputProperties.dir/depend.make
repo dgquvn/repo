@@ -3,4 +3,5 @@
 
 FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.o: ../FizzBuzz_classes/inputProperties.h
 FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.o: ../FizzBuzz_classes/tests/test_inputProperties.cpp
+FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/tests/test_inputProperties.cpp.o: FizzBuzz_config.hpp
 

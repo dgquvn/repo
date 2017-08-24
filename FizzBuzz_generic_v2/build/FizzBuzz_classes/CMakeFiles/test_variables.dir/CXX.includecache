@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../FizzBuzz_classes/inputProperties.h
+fstream
+-
+iostream
+-
+string
+-
+algorithm
+-
+unordered_map
+-
+ctype.h
+-
+boost/algorithm/string/trim.hpp
+-
+
+../FizzBuzz_classes/variables.h
+iostream
+-
+string
+-
+unordered_map
+-
+inputProperties.h
+../FizzBuzz_classes/inputProperties.h
+
+/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes/tests/test_variables.cpp
+boost/test/included/unit_test.hpp
+-
+variables.h
+/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes/tests/variables.h
+FizzBuzz_config.hpp
+/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes/tests/FizzBuzz_config.hpp
+
+FizzBuzz_config.hpp
+

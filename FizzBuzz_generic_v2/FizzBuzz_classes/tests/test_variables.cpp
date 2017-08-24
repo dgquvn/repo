@@ -32,11 +32,30 @@
 #define BOOST_TEST_MODULE TEST_VARIABLE
 #include <boost/test/included/unit_test.hpp>
 #include "variables.h"
+#include "FizzBuzz_config.hpp"
+
+BOOST_AUTO_TEST_CASE(test_d_v){
+	/**
+	 * testing default constructor
+	 */
+	variables var(10,3,5,"F","B");
+	int max_I, l_d, u_d;
+	std::string l_d_l, u_d_l;
+	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
+	BOOST_CHECK(max_I == 10);
+	BOOST_CHECK(l_d == 3);
+	BOOST_CHECK(u_d == 5);
+	BOOST_CHECK(l_d_l == "F");
+	BOOST_CHECK(u_d_l == "B");
+}
 
 BOOST_AUTO_TEST_CASE(test_w){
-	std::string s{"input.txt"};
-	inputProperties a(s);
-	variables var(a);
+    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/input.txt"};
+    std::string source_dir{FizzBuzz_source_dir};
+    std::string fileloc{source_dir + fileloc_rest};
+//    std::cout << "File: " << fileloc << "\n";
+    inputProperties input(fileloc);
+    variables var(input);
 	BOOST_CHECK_EQUAL(var.isValid(), true);
 	int max_I, l_d, u_d;
 	std::string l_d_l, u_d_l;
@@ -46,7 +65,6 @@ BOOST_AUTO_TEST_CASE(test_w){
 	BOOST_CHECK(u_d == 5);
 	BOOST_CHECK(l_d_l == "Fizz");
 	BOOST_CHECK(u_d_l == "Buzz");
+//	std::cout << "test_w done\n";
 }
-
-
 

@@ -31,6 +31,14 @@
  -----------------------------------------------------------------------------*/
 #include "generate_output.h"
 
+generate_output::generate_output(const std::vector<std::string>& op):
+output{op}
+{
+	/**
+	 * default constructor
+	 */
+}
+
 generate_output::generate_output(variables& a){
 	/**
 	 * This is engine for generating the output string

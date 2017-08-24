@@ -33,11 +33,30 @@
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 #include "inputProperties.h"
+#include "FizzBuzz_config.hpp"
+
+/*
+BOOST_AUTO_TEST_CASE(test_d_constructor){
+	std::cout << "test default constructor\n";
+	std::unordered_map<std::string, std::string> input_mp;
+	input_mp.insert({"MAX_I", "10"});
+	input_mp.insert({"LOWER_D", "3"});
+	input_mp.insert({"UPPER_D", "4"});
+	input_mp.insert({"LOWER_D_L", "F"});
+	input_mp.insert({"UPPER_D_L", "B"});
+	std::cout << "test input\n";
+	inputProperties input(input_mp);
+	BOOST_CHECK_EQUAL(input.getVar(), input_mp);
+}
+*/
 
 
 BOOST_AUTO_TEST_CASE(test_c){
-    std::string file{"input.txt"};
-    inputProperties input(file);
+    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/input.txt"};
+    std::string source_dir{FizzBuzz_source_dir};
+    std::string fileloc{source_dir + fileloc_rest};
+//    std::cout << "File: " << fileloc << "\n";
+    inputProperties input(fileloc);
     std::unordered_map<std::string, std::string> mp = input.getVar();
 	if (mp.find("MAX_INT") == mp.end())
 		BOOST_ERROR("MAX_INT not found");
@@ -66,6 +85,7 @@ BOOST_AUTO_TEST_CASE(test_c){
 
 	if (mp.size() != 5)
 		BOOST_ERROR("input map variable with wrong size!");
+//    std::cout << "test done\n";
 }
 
 

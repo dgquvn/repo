@@ -31,6 +31,15 @@
  -----------------------------------------------------------------------------*/
 #include "variables.h"
 
+variables::variables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l):
+max_Int{m_I}, lower_divisor{l_d}, upper_divisor{u_d},
+lower_div_lab{l_d_l}, upper_div_lab{u_d_l}, count{5}
+{
+	/**
+	 * default setting of constructor
+	 */
+}
+
 variables::variables(const inputProperties& input){
 	/**
 	 * This is for setting variables
@@ -65,6 +74,7 @@ bool variables::isValid(){
 	else
 		return false;
 }
+
 
 void variables::outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l){
 	if (isValid()){

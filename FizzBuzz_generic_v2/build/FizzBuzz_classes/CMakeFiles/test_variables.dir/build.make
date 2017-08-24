@@ -90,6 +90,7 @@ test_variables_EXTERNAL_OBJECTS =
 
 FizzBuzz_classes/test_variables: FizzBuzz_classes/CMakeFiles/test_variables.dir/tests/test_variables.cpp.o
 FizzBuzz_classes/test_variables: FizzBuzz_classes/CMakeFiles/test_variables.dir/build.make
+FizzBuzz_classes/test_variables: FizzBuzz_classes/libFizzBuzz_classes.a
 FizzBuzz_classes/test_variables: FizzBuzz_classes/CMakeFiles/test_variables.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_variables"
 	cd /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_variables.dir/link.txt --verbose=$(VERBOSE)

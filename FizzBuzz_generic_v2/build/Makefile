@@ -67,6 +67,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -124,6 +135,32 @@ Fizz_Buzz_v2/fast:
 .PHONY : Fizz_Buzz_v2/fast
 
 #=============================================================================
+# Target rules for targets named test_generate_output
+
+# Build rule for target.
+test_generate_output: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_generate_output
+.PHONY : test_generate_output
+
+# fast build rule for target.
+test_generate_output/fast:
+	$(MAKE) -f FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build.make FizzBuzz_classes/CMakeFiles/test_generate_output.dir/build
+.PHONY : test_generate_output/fast
+
+#=============================================================================
+# Target rules for targets named test_inputProperties
+
+# Build rule for target.
+test_inputProperties: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_inputProperties
+.PHONY : test_inputProperties
+
+# fast build rule for target.
+test_inputProperties/fast:
+	$(MAKE) -f FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build.make FizzBuzz_classes/CMakeFiles/test_inputProperties.dir/build
+.PHONY : test_inputProperties/fast
+
+#=============================================================================
 # Target rules for targets named FizzBuzz_classes
 
 # Build rule for target.
@@ -135,6 +172,19 @@ FizzBuzz_classes: cmake_check_build_system
 FizzBuzz_classes/fast:
 	$(MAKE) -f FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/build.make FizzBuzz_classes/CMakeFiles/FizzBuzz_classes.dir/build
 .PHONY : FizzBuzz_classes/fast
+
+#=============================================================================
+# Target rules for targets named test_variables
+
+# Build rule for target.
+test_variables: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_variables
+.PHONY : test_variables
+
+# fast build rule for target.
+test_variables/fast:
+	$(MAKE) -f FizzBuzz_classes/CMakeFiles/test_variables.dir/build.make FizzBuzz_classes/CMakeFiles/test_variables.dir/build
+.PHONY : test_variables/fast
 
 FizzBuzz_main.o: FizzBuzz_main.cpp.o
 
@@ -170,9 +220,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... Fizz_Buzz_v2"
+	@echo "... test_generate_output"
+	@echo "... test_inputProperties"
 	@echo "... FizzBuzz_classes"
+	@echo "... test_variables"
 	@echo "... FizzBuzz_main.o"
 	@echo "... FizzBuzz_main.i"
 	@echo "... FizzBuzz_main.s"

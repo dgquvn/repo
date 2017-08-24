@@ -32,6 +32,15 @@
 #include "inputProperties.h"
 
 
+inputProperties::inputProperties(const std::unordered_map<std::string, std::string>& input_mp):
+mp{input_mp}
+{
+	/**
+	 * default constructor getting initialized by input_mp
+	 */
+}
+
+
 inputProperties::inputProperties(std::string& file_loc){
 	/**
 	 * reading variable from the file and set the variables
