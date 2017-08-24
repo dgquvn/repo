@@ -11,3 +11,8 @@ set(FizzBuzz_classes_SRCS
 SET(LIB_TYPE STATIC)
 
 add_library(FizzBuzz_classes ${LIB_TYPE} ${FizzBuzz_classes_SRCS})
+
+#file (GLOB test_files tests/*.cpp)
+#add_tests("${test_files}" "${CMAKE_CURRENT_SOURCE_DIR}" "${Boost_LIBRARIES}")
+
+

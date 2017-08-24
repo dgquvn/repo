@@ -39,13 +39,13 @@
 #include <algorithm>
 #include <unordered_map>
 #include <ctype.h>
+#include <boost/algorithm/string/trim.hpp>
 
 class inputProperties{
 public:
     inputProperties() {}
     inputProperties(std::string& file_loc);
-	std::unordered_map<std::string, std::string> getVar() const;
-    static void trim(std::string& s);
+    const std::unordered_map<std::string, std::string>& getVar() const;
 private:
 	std::unordered_map<std::string, std::string> mp;
 };

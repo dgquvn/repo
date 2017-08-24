@@ -36,7 +36,7 @@ variables::variables(const inputProperties& input){
 	 * This is for setting variables
 	 */
 //    std::cout << "variables constructor\n";
-    std::unordered_map<std::string, std::string> mp{input.getVar()};
+    std::unordered_map<std::string, std::string> mp = input.getVar();
     if (mp.find("MAX_INT") != mp.end()){
 		max_Int = std::stoi(mp["MAX_INT"]);
 		count++;

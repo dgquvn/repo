@@ -1,0 +1,6 @@
+inputProperties 0 0
+test_variables 0 0
+test_inputProperties 0 0
+---
+test_inputProperties
+test_variables

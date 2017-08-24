@@ -41,6 +41,8 @@ unordered_map
 -
 ctype.h
 -
+boost/algorithm/string/trim.hpp
+-
 
 ../FizzBuzz_classes/variables.h
 iostream
@@ -64,11 +66,11 @@ vector
 fstream
 -
 
-/home/gd0/git/repo/FizzBuzz_generic_v2/FizzBuzz_main.cpp
+/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_main.cpp
 iostream
 -
 string
 -
 Controller.h
-/home/gd0/git/repo/FizzBuzz_generic_v2/Controller.h
+/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/Controller.h
 

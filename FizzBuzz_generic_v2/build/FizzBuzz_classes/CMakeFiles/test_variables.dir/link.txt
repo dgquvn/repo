@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/test_variables.dir/tests/test_variables.cpp.o  -o test_variables 

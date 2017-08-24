@@ -1,0 +1,35 @@
+Start testing: Aug 24 10:05 EDT
+----------------------------------------------------------
+Unable to find executable: test_inputProperties
+1/2 Testing: test_inputProperties
+1/2 Test: test_inputProperties
+Command: "" "WORKING_DIRECTORY" "/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes"
+Directory: /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes
+"test_inputProperties" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_inputProperties" end time: Aug 24 10:05 EDT
+"test_inputProperties" time elapsed: 00:00:00
+----------------------------------------------------------
+
+Unable to find executable: test_variables
+2/2 Testing: test_variables
+2/2 Test: test_variables
+Command: "" "WORKING_DIRECTORY" "/home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes"
+Directory: /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/build/FizzBuzz_classes
+"test_variables" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test_variables" end time: Aug 24 10:05 EDT
+"test_variables" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 24 10:05 EDT

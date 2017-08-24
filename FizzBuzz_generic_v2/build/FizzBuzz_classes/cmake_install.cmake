@@ -1,4 +1,4 @@
-# Install script for directory: /home/gd0/git/repo/FizzBuzz_generic_v2/FizzBuzz_classes
+# Install script for directory: /home/gd0/Documents/workspace_dev/FizzBuzz_generic_v2/FizzBuzz_classes
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

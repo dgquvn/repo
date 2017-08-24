@@ -32,9 +32,9 @@
 #include "Controller.h"
 
 Controller::Controller(std::string inputfile_loc):
-    input(inputfile_loc),
-    var(input),
-    output(var)
+    input{std::move(*(new inputProperties(inputfile_loc)))},
+    var{std::move(*new variables(input))},
+    output{std::move(*new generate_output(var))}
 {
 	/**
 	 * Controller constructor for getting input properties

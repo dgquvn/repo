@@ -40,7 +40,6 @@
 
 class variables{
 public:
-    variables() {}
 	variables(const inputProperties& input);
 	bool isValid();
     void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l);
