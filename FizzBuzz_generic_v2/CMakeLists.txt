@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
 project(Fizz_Buzz_v2)
 
+# Disable in-source builds to keep the tree pristine
+set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
+
 set(FizzBuzz_class_dir
   ${CMAKE_CURRENT_SOURCE_DIR}/FizzBuzz_classes)
 
