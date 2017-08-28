@@ -46,7 +46,7 @@ void Controller::print(std::string outputfile_loc){
 	/**
 	 * write the output to the specific file location
 	 */
-	writing_to_file object;
+	FileWriter object;
 	object.writer(output.getOutput(), outputfile_loc);
 }
 

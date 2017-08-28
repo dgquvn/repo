@@ -29,9 +29,9 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#include "writing_to_file.h"
+#include "FileWriter.h"
 
-void writing_to_file::writer(const std::vector<std::string>& a, const std::string& outputfile_loc){
+void FileWriter::writer(const std::vector<std::string>& a, const std::string& outputfile_loc){
 	/**
 	 * This function write each variables to file
 	 */

@@ -4,8 +4,8 @@ set(FizzBuzz_classes_SRCS
    Controller.cpp
    inputProperties.cpp
    variables.cpp
-   generate_output.cpp
-   writing_to_file.cpp
+   OutputGenerator.cpp
+   FileWriter.cpp
 )
 
 SET(LIB_TYPE STATIC)

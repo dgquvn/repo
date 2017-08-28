@@ -29,9 +29,9 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#include "generate_output.h"
+#include "OutputGenerator.h"
 
-generate_output::generate_output(const std::vector<std::string>& op):
+OutputGenerator::OutputGenerator(const std::vector<std::string>& op):
 output{op}
 {
 	/**
@@ -39,11 +39,11 @@ output{op}
 	 */
 }
 
-generate_output::generate_output(variables& a){
+OutputGenerator::OutputGenerator(variables& a){
 	/**
 	 * This is engine for generating the output string
 	 */
- //   std::cout << "generate_output constructor\n";
+ //   std::cout << "OutputGenerator constructor\n";
 	int max_Int, lower_div, upper_div;
 	std::string lower_div_lab, upper_div_lab;
 	a.outputVar(max_Int, lower_div, upper_div, lower_div_lab, upper_div_lab);
@@ -63,7 +63,7 @@ generate_output::generate_output(variables& a){
 	}
 }
 
-std::vector<std::string>& generate_output::getOutput(){
+std::vector<std::string>& OutputGenerator::getOutput(){
 	/**
 	 * return output vector
 	 */

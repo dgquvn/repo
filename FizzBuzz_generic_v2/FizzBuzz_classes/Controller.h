@@ -36,8 +36,8 @@
 #include <string>
 #include "inputProperties.h"
 #include "variables.h"
-#include "generate_output.h"
-#include "writing_to_file.h"
+#include "OutputGenerator.h"
+#include "FileWriter.h"
 
 class Controller {
 public:
@@ -48,7 +48,7 @@ public:
 private:
 	inputProperties input;
 	variables var;
-	generate_output output;
+	OutputGenerator output;
 };
 
 #endif /* CONTROLLER_H_ */

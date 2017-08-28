@@ -29,24 +29,29 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-
-#ifndef GENERATE_OUTPUT_H_
-#define GENERATE_OUTPUT_H_
-
+#define BOOST_TEST_MODULE TEST_WRITING_TO_FILE
+#include <boost/test/included/unit_test.hpp>
 #include <iostream>
-#include <string>
-#include <vector>
-#include "variables.h"
+#include "FileWriter.h"
+#include "FizzBuzz_config.hpp"
 
-class generate_output{
-public:
-    generate_output(const std::vector<std::string>& op);
-    generate_output(variables& a);
-	std::vector<std::string>& getOutput();
-private:
-	std::vector<std::string> output;
-};
+BOOST_AUTO_TEST_CASE(test_writer){
+    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/output.txt"};
+    std::string source_dir{FizzBuzz_source_dir};
+    std::string fileloc{source_dir + fileloc_rest};
+    std::vector<std::string> log{"who", "are", "you"};
+    FileWriter w;
+	w.writer(log, fileloc);
+    std:: ifstream file(fileloc);
+    if (file.is_open()){
+    	std::string line;
+    	for (int i = 0; i < 3; i++){
+    		std::getline(file, line);
+    		BOOST_CHECK_EQUAL(line, log[i]);
+    	}
+    	file.close();
+    }
+}
 
 
 
-#endif /* GENERATE_OUTPUT_H_ */

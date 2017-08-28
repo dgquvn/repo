@@ -29,29 +29,40 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#define BOOST_TEST_MODULE TEST_WRITING_TO_FILE
+#define BOOST_TEST_MODULE TEST_GENERATE_OUTPUT
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
-#include "writing_to_file.h"
-#include "FizzBuzz_config.hpp"
+#include <algorithm>
+#include "OutputGenerator.h"
 
-BOOST_AUTO_TEST_CASE(test_writer){
-    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/output.txt"};
-    std::string source_dir{FizzBuzz_source_dir};
-    std::string fileloc{source_dir + fileloc_rest};
-    std::vector<std::string> log{"who", "are", "you"};
-    writing_to_file w;
-	w.writer(log, fileloc);
-    std:: ifstream file(fileloc);
-    if (file.is_open()){
-    	std::string line;
-    	for (int i = 0; i < 3; i++){
-    		std::getline(file, line);
-    		BOOST_CHECK_EQUAL(line, log[i]);
-    	}
-    	file.close();
-    }
+
+BOOST_AUTO_TEST_CASE(test_d_g){
+	/**
+	 * test default constructor
+	 */
+
+	std::vector<std::string> op{"who", "are", "you"};
+	OutputGenerator g(op);
+	auto log = g.getOutput();
+	BOOST_REQUIRE_EQUAL(log.size(), op.size());
+	BOOST_REQUIRE(std::equal(op.cbegin(), op.cend(), log.cbegin()));
+//	BOOST_CHECK_EQUAL(g.getOutput(), op);
 }
 
 
+BOOST_AUTO_TEST_CASE(test_g){
+	variables var(10,2,4,"F","B");
+	OutputGenerator g(var);
+	std::vector<std::string>& op = g.getOutput();
+	for (int i = 1; i < 10; i++){
+		if (i % 8 == 0)
+			BOOST_CHECK(op[i-1] == "FB");
+		else if (i % 4 == 0)
+			BOOST_CHECK(op[i-1] == "B");
+		else if (i % 2 == 0)
+			BOOST_CHECK(op[i-1] == "F");
+		else
+			BOOST_CHECK(op[i-1] == std::to_string(i));
+	}
+}
 

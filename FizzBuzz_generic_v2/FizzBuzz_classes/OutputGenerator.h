@@ -30,18 +30,18 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef GENERATE_OUTPUT_H_
-#define GENERATE_OUTPUT_H_
+#ifndef OUTPUTGENERATOR_H_
+#define OUTPUTGENERATOR_H_
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include "variables.h"
 
-class generate_output{
+class OutputGenerator{
 public:
-    generate_output(const std::vector<std::string>& op);
-    generate_output(variables& a);
+    OutputGenerator(const std::vector<std::string>& op);
+    OutputGenerator(variables& a);
 	std::vector<std::string>& getOutput();
 private:
 	std::vector<std::string> output;
@@ -49,4 +49,4 @@ private:
 
 
 
-#endif /* GENERATE_OUTPUT_H_ */
+#endif /* OUTPUTGENERATOR_H_ */

@@ -30,8 +30,8 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef WRITING_TO_FILE_H_
-#define WRITING_TO_FILE_H_
+#ifndef FILEWRITER_H_
+#define FILEWRITER_H_
 
 #include<iostream>
 #include <string>
@@ -39,11 +39,11 @@
 #include <vector>
 #include <fstream>
 
-class writing_to_file{
+class FileWriter{
 public:
 	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
 };
 
 
 
-#endif /* WRITING_TO_FILE_H_ */
+#endif /* FILEWRITER_H_ */
