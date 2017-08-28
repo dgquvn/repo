@@ -29,64 +29,63 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#include "variables.h"
+#define BOOST_TEST_MODULE TEST_INPUTPROPERTIES
+#include <boost/test/included/unit_test.hpp>
+#include <iostream>
+#include "inputProperties.h"
+#include "FizzBuzz_config.hpp"
 
-variables::variables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l):
-max_Int{m_I}, lower_divisor{l_d}, upper_divisor{u_d},
-lower_div_lab{l_d_l}, upper_div_lab{u_d_l}, count{5}
-{
-	/**
-	 * default setting of constructor
-	 */
+/*
+BOOST_AUTO_TEST_CASE(test_d_constructor){
+	std::cout << "test default constructor\n";
+	std::unordered_map<std::string, std::string> input_mp;
+	input_mp.insert({"MAX_I", "10"});
+	input_mp.insert({"LOWER_D", "3"});
+	input_mp.insert({"UPPER_D", "4"});
+	input_mp.insert({"LOWER_D_L", "F"});
+	input_mp.insert({"UPPER_D_L", "B"});
+	std::cout << "test input\n";
+	inputProperties input(input_mp);
+	BOOST_CHECK_EQUAL(input.getVar(), input_mp);
 }
+*/
 
-variables::variables(const inputProperties& input){
-	/**
-	 * This is for setting variables
-	 */
-//    std::cout << "variables constructor\n";
+
+BOOST_AUTO_TEST_CASE(test_c){
+    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/input.txt"};
+    std::string source_dir{FizzBuzz_source_dir};
+    std::string fileloc{source_dir + fileloc_rest};
+//    std::cout << "File: " << fileloc << "\n";
+    inputProperties input(fileloc);
     std::unordered_map<std::string, std::string> mp = input.getVar();
-    if (mp.find("MAX_INT") != mp.end()){
-		max_Int = std::stoi(mp["MAX_INT"]);
-		count++;
-	}
-    if (mp.find("LOWER_DIVISOR") != mp.end()){
-		lower_divisor = std::stoi(mp["LOWER_DIVISOR"]);
-		count++;
-	}
-    if (mp.find("UPPER_DIVISOR") != mp.end()){
-		upper_divisor = std::stoi(mp["UPPER_DIVISOR"]);
-		count++;
-	}
-    if (mp.find("LOWER_DIVISOR_LABEL") != mp.end()){
-		lower_div_lab = mp["LOWER_DIVISOR_LABEL"];
-		count++;
-	}
-    if (mp.find("UPPER_DIVISOR_LABEL") != mp.end()){
-		upper_div_lab = mp["UPPER_DIVISOR_LABEL"];
-		count++;
-	}
-}
-
-bool variables::isValid(){
-	if (count == 5)
-		return true;
+	if (mp.find("MAX_INT") == mp.end())
+		BOOST_ERROR("MAX_INT not found");
 	else
-		return false;
-}
+        BOOST_CHECK_EQUAL(mp["MAX_INT"], "100");
 
+	if (mp.find("LOWER_DIVISOR") == mp.end())
+		BOOST_ERROR("LOWER_DIVISOR not found");
+	else
+        BOOST_CHECK_EQUAL(mp["LOWER_DIVISOR"], "3");
 
-void variables::outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l){
-	if (isValid()){
-		max_I = max_Int;
-		l_d = lower_divisor;
-		u_d = upper_divisor;
-        l_d_l = lower_div_lab;
-        u_d_l = upper_div_lab;
-	}
-	else{
-		throw "wrong format of input file";
-	}
+	if (mp.find("UPPER_DIVISOR") == mp.end())
+		BOOST_ERROR("UPPER_DIVISOR not found");
+	else
+        BOOST_CHECK_EQUAL(mp["UPPER_DIVISOR"], "5");
+
+	if (mp.find("LOWER_DIVISOR_LABEL") == mp.end())
+		BOOST_ERROR("LOWER_DIVISOR_LABEL not found");
+	else
+		BOOST_CHECK_EQUAL(mp["LOWER_DIVISOR_LABEL"], "Fizz");
+
+	if (mp.find("UPPER_DIVISOR_LABEL") == mp.end())
+		BOOST_ERROR("UPPER_DIVISOR_LABEL not found");
+	else
+		BOOST_CHECK_EQUAL(mp["UPPER_DIVISOR_LABEL"], "Buzz");
+
+	if (mp.size() != 5)
+		BOOST_ERROR("input map variable with wrong size!");
+//    std::cout << "test done\n";
 }
 
 
