@@ -32,11 +32,16 @@
 #define BOOST_TEST_MODULE TEST_INPUTPROPERTIES
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
+#include <algorithm>
 #include "inputProperties.h"
 #include "FizzBuzz_config.hpp"
 
-/*
+/**
+ * This test checks basic storage and retrieval of properties values in a map.
+ */
 BOOST_AUTO_TEST_CASE(test_d_constructor){
+
+	// Setup the test content
 	std::cout << "test default constructor\n";
 	std::unordered_map<std::string, std::string> input_mp;
 	input_mp.insert({"MAX_I", "10"});
@@ -46,9 +51,19 @@ BOOST_AUTO_TEST_CASE(test_d_constructor){
 	input_mp.insert({"UPPER_D_L", "B"});
 	std::cout << "test input\n";
 	inputProperties input(input_mp);
-	BOOST_CHECK_EQUAL(input.getVar(), input_mp);
+
+	// Do the test. First get the input properties map as returned by the class.
+	auto retInputProps = input.getVar();
+	// Check the size of the two maps
+	BOOST_REQUIRE_EQUAL(retInputProps.size(),input_mp.size());
+	// Use std::equal to compare the maps and require they are equal. This
+	// method is necessary because BOOST_REQUIRE/CHECK_EQUAL cannot check
+	// maps directly.
+	BOOST_REQUIRE(std::equal(input_mp.cbegin(),input_mp.cend(),retInputProps.cbegin()));
+
+        return;
 }
-*/
+
 
 
 BOOST_AUTO_TEST_CASE(test_c){
