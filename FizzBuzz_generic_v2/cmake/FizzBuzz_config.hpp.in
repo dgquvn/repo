@@ -1,0 +1,6 @@
+#ifndef FIZZBUZZ_CONFIG_HPP
+#define FIZZBUZZ_CONFIG_HPP
+
+#define FizzBuzz_source_dir "${CMAKE_SOURCE_DIR}"
+
+#endif

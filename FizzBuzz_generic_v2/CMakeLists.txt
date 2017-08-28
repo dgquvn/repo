@@ -5,7 +5,6 @@ project(Fizz_Buzz_v2)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules")
-include(tests)
 
 set(FizzBuzz_class_dir
   ${CMAKE_CURRENT_SOURCE_DIR}/FizzBuzz_classes)
