@@ -29,43 +29,46 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#define BOOST_TEST_MODULE TEST_VARIABLE
-#include <boost/test/included/unit_test.hpp>
-#include "variables.h"
+#include "generate_output.h"
 
-BOOST_AUTO_TEST_CASE(test_d_v){
+generate_output::generate_output(const std::vector<std::string>& op):
+output{op}
+{
 	/**
-	 * testing default constructor
+	 * default constructor
 	 */
-	variables var(10,3,5,"F","B");
-	int max_I, l_d, u_d;
-	std::string l_d_l, u_d_l;
-	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
-	BOOST_CHECK(max_I == 10);
-	BOOST_CHECK(l_d == 3);
-	BOOST_CHECK(u_d == 5);
-	BOOST_CHECK(l_d_l == "F");
-	BOOST_CHECK(u_d_l == "B");
 }
 
-BOOST_AUTO_TEST_CASE(test_w){
-	std::unordered_map<std::string, std::string> input_mp;
-	input_mp.insert({"MAX_INT", "100"});
-	input_mp.insert({"LOWER_DIVISOR", "3"});
-	input_mp.insert({"UPPER_DIVISOR", "5"});
-	input_mp.insert({"LOWER_DIVISOR_LABEL", "Fizz"});
-	input_mp.insert({"UPPER_DIVISOR_LABEL", "Buzz"});
-    inputProperties input(input_mp);
-    variables var(input);
-	BOOST_CHECK_EQUAL(var.isValid(), true);
-	int max_I, l_d, u_d;
-	std::string l_d_l, u_d_l;
-	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
-	BOOST_CHECK(max_I == 100);
-	BOOST_CHECK(l_d == 3);
-	BOOST_CHECK(u_d == 5);
-	BOOST_CHECK(l_d_l == "Fizz");
-	BOOST_CHECK(u_d_l == "Buzz");
-//	std::cout << "test_w done\n";
+generate_output::generate_output(variables& a){
+	/**
+	 * This is engine for generating the output string
+	 */
+ //   std::cout << "generate_output constructor\n";
+	int max_Int, lower_div, upper_div;
+	std::string lower_div_lab, upper_div_lab;
+	a.outputVar(max_Int, lower_div, upper_div, lower_div_lab, upper_div_lab);
+
+	int product_div = lower_div * upper_div;
+	output.resize(max_Int);
+	std::string combined = lower_div_lab + upper_div_lab;
+    for (int i = 1; i < max_Int; i++){
+		if (i % product_div == 0)
+            output[i-1] = combined;
+		else if (i % upper_div == 0)
+            output[i-1] = upper_div_lab;
+		else if (i % lower_div == 0)
+            output[i-1] = lower_div_lab;
+		else
+            output[i-1] = std::to_string(i);
+	}
 }
+
+std::vector<std::string>& generate_output::getOutput(){
+	/**
+	 * return output vector
+	 */
+	return output;
+}
+
+
 

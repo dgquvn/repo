@@ -29,43 +29,24 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#define BOOST_TEST_MODULE TEST_VARIABLE
-#include <boost/test/included/unit_test.hpp>
+
+#ifndef GENERATE_OUTPUT_H_
+#define GENERATE_OUTPUT_H_
+
+#include <iostream>
+#include <string>
+#include <vector>
 #include "variables.h"
 
-BOOST_AUTO_TEST_CASE(test_d_v){
-	/**
-	 * testing default constructor
-	 */
-	variables var(10,3,5,"F","B");
-	int max_I, l_d, u_d;
-	std::string l_d_l, u_d_l;
-	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
-	BOOST_CHECK(max_I == 10);
-	BOOST_CHECK(l_d == 3);
-	BOOST_CHECK(u_d == 5);
-	BOOST_CHECK(l_d_l == "F");
-	BOOST_CHECK(u_d_l == "B");
-}
+class generate_output{
+public:
+    generate_output(const std::vector<std::string>& op);
+    generate_output(variables& a);
+	std::vector<std::string>& getOutput();
+private:
+	std::vector<std::string> output;
+};
 
-BOOST_AUTO_TEST_CASE(test_w){
-	std::unordered_map<std::string, std::string> input_mp;
-	input_mp.insert({"MAX_INT", "100"});
-	input_mp.insert({"LOWER_DIVISOR", "3"});
-	input_mp.insert({"UPPER_DIVISOR", "5"});
-	input_mp.insert({"LOWER_DIVISOR_LABEL", "Fizz"});
-	input_mp.insert({"UPPER_DIVISOR_LABEL", "Buzz"});
-    inputProperties input(input_mp);
-    variables var(input);
-	BOOST_CHECK_EQUAL(var.isValid(), true);
-	int max_I, l_d, u_d;
-	std::string l_d_l, u_d_l;
-	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
-	BOOST_CHECK(max_I == 100);
-	BOOST_CHECK(l_d == 3);
-	BOOST_CHECK(u_d == 5);
-	BOOST_CHECK(l_d_l == "Fizz");
-	BOOST_CHECK(u_d_l == "Buzz");
-//	std::cout << "test_w done\n";
-}
 
+
+#endif /* GENERATE_OUTPUT_H_ */
