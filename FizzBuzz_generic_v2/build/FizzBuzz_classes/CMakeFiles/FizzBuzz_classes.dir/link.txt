@@ -1,2 +1,0 @@
-/usr/bin/ar qc libFizzBuzz_classes.a  CMakeFiles/FizzBuzz_classes.dir/Controller.cpp.o CMakeFiles/FizzBuzz_classes.dir/inputProperties.cpp.o CMakeFiles/FizzBuzz_classes.dir/variables.cpp.o CMakeFiles/FizzBuzz_classes.dir/generate_output.cpp.o CMakeFiles/FizzBuzz_classes.dir/writing_to_file.cpp.o
-/usr/bin/ranlib libFizzBuzz_classes.a
