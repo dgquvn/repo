@@ -31,17 +31,15 @@
  -----------------------------------------------------------------------------*/
 #include "inputProperties.h"
 
-void inputProperties::trim(std::string& s){
+
+inputProperties::inputProperties(const std::unordered_map<std::string, std::string>& input_mp):
+mp{input_mp}
+{
 	/**
-	 * This is the function for deleting leading and trail spaces
+	 * default constructor getting initialized by input_mp
 	 */
-	while(s[0] == ' '){
-		s.erase(s.begin());
-	}
-	while(s.back() == ' '){
-		s.pop_back();
-	}
 }
+
 
 inputProperties::inputProperties(std::string& file_loc){
 	/**
@@ -56,10 +54,10 @@ inputProperties::inputProperties(std::string& file_loc){
 			auto pos = line.find('=');
 			if (pos != -1){
 				std::string key = line.substr(0, pos);
-				trim(key);
+                boost::algorithm::trim(key);
 				std::transform(key.begin(), key.end(), key.begin(), ::toupper);
 				std::string val = line.substr(pos+1, line.size()-pos-1);
-				trim(val);
+                boost::algorithm::trim(val);
 				mp[key] = val;
 //                std::cout << "key: " << key << " val: " << val << "\n";
 			}
@@ -68,7 +66,7 @@ inputProperties::inputProperties(std::string& file_loc){
 	}
 }
 
-std::unordered_map<std::string, std::string> inputProperties::getVar() const{
+const std::unordered_map<std::string, std::string>& inputProperties::getVar() const{
 	/**
 	 * return the saved pairs of key and values
 	 */

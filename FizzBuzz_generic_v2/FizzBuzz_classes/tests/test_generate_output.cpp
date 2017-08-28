@@ -29,24 +29,37 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-
-#ifndef GENERATE_OUTPUT_H_
-#define GENERATE_OUTPUT_H_
-
+#define BOOST_TEST_MODULE TEST_GENERATE_OUTPUT
+#include <boost/test/included/unit_test.hpp>
 #include <iostream>
-#include <string>
-#include <vector>
-#include "variables.h"
+#include "generate_output.h"
 
-class generate_output{
-public:
-    generate_output(const std::vector<std::string>& op);
-    generate_output(variables& a);
-	std::vector<std::string>& getOutput();
-private:
-	std::vector<std::string> output;
-};
+/***********************
+BOOST_AUTO_TEST_CASE(test_d_g){
+	/**
+	 * test default constructor
+	 */
+/*
+	std::vector<std::string> op{"who", "are", "you"};
+	generate_output g(op);
+	BOOST_CHECK_EQUAL(g.getOutput(), op);
+}
+****************/
 
 
+BOOST_AUTO_TEST_CASE(test_g){
+	variables var(10,2,4,"F","B");
+	generate_output g(var);
+	std::vector<std::string>& op = g.getOutput();
+	for (int i = 1; i < 10; i++){
+		if (i % 8 == 0)
+			BOOST_CHECK(op[i-1] == "FB");
+		else if (i % 4 == 0)
+			BOOST_CHECK(op[i-1] == "B");
+		else if (i % 2 == 0)
+			BOOST_CHECK(op[i-1] == "F");
+		else
+			BOOST_CHECK(op[i-1] == std::to_string(i));
+	}
+}
 
-#endif /* GENERATE_OUTPUT_H_ */
