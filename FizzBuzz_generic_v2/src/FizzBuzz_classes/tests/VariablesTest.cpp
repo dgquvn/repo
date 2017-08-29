@@ -33,10 +33,10 @@
 #include <boost/test/included/unit_test.hpp>
 #include "Variables.h"
 
+/**
+ * testing default constructor
+ */
 BOOST_AUTO_TEST_CASE(test_d_v){
-	/**
-	 * testing default constructor
-	 */
 	Variables var(10,3,5,"F","B");
 	int max_I, l_d, u_d;
 	std::string l_d_l, u_d_l;
@@ -48,6 +48,9 @@ BOOST_AUTO_TEST_CASE(test_d_v){
 	BOOST_CHECK(u_d_l == "B");
 }
 
+/**
+ * test the constructor with InputProperties as parameter
+ */
 BOOST_AUTO_TEST_CASE(test_w){
 	std::unordered_map<std::string, std::string> input_mp;
 	input_mp.insert({"MAX_INT", "100"});
@@ -55,11 +58,16 @@ BOOST_AUTO_TEST_CASE(test_w){
 	input_mp.insert({"UPPER_DIVISOR", "5"});
 	input_mp.insert({"LOWER_DIVISOR_LABEL", "Fizz"});
 	input_mp.insert({"UPPER_DIVISOR_LABEL", "Buzz"});
+
     InputProperties input(input_mp);
     Variables var(input);
+
+    // check if five private members are stored
 	BOOST_CHECK_EQUAL(var.isValid(), true);
 	int max_I, l_d, u_d;
 	std::string l_d_l, u_d_l;
+
+	// accessing the private members
 	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
 	BOOST_CHECK(max_I == 100);
 	BOOST_CHECK(l_d == 3);

@@ -54,50 +54,67 @@ BOOST_AUTO_TEST_CASE(test_d_constructor){
 
 	// Do the test. First get the input properties map as returned by the class.
 	auto retInputProps = input.getVar();
+
 	// Check the size of the two maps
 	BOOST_REQUIRE_EQUAL(retInputProps.size(),input_mp.size());
-	// Use std::equal to compare the maps and require they are equal. This
-	// method is necessary because BOOST_REQUIRE/CHECK_EQUAL cannot check
-	// maps directly.
+
+	// Use std::equal to compare the maps and require they are equal.
 	BOOST_REQUIRE(std::equal(input_mp.cbegin(),input_mp.cend(),retInputProps.cbegin()));
 
     return;
 }
 
 
-
+/**
+ * test the constructor for reading from input file
+ */
 BOOST_AUTO_TEST_CASE(test_c){
+
+	// input file subdirectory
     std::string fileloc_rest{"/src/FizzBuzz_classes/tests/data/input.txt"};
+
+    // source file directory
     std::string source_dir{FizzBuzz_source_dir};
+
+    // full directory
     std::string fileloc{source_dir + fileloc_rest};
-//    std::cout << "File: " << fileloc << "\n";
+
     InputProperties input(fileloc);
+
+    // store the map to outside
     std::unordered_map<std::string, std::string> mp = input.getVar();
+
+    // check key "MAX_INT" and value "100"
 	if (mp.find("MAX_INT") == mp.end())
 		BOOST_ERROR("MAX_INT not found");
 	else
         BOOST_CHECK_EQUAL(mp["MAX_INT"], "100");
 
+	// check key "LOWER_DIVISOR" and value "3"
 	if (mp.find("LOWER_DIVISOR") == mp.end())
 		BOOST_ERROR("LOWER_DIVISOR not found");
 	else
         BOOST_CHECK_EQUAL(mp["LOWER_DIVISOR"], "3");
 
+	// check key "UPPER_DIVISOR' and value "5"
 	if (mp.find("UPPER_DIVISOR") == mp.end())
 		BOOST_ERROR("UPPER_DIVISOR not found");
 	else
         BOOST_CHECK_EQUAL(mp["UPPER_DIVISOR"], "5");
 
+	// check key "LOWER_DIVISOR_LABEL" and value "Fizz"
 	if (mp.find("LOWER_DIVISOR_LABEL") == mp.end())
 		BOOST_ERROR("LOWER_DIVISOR_LABEL not found");
 	else
 		BOOST_CHECK_EQUAL(mp["LOWER_DIVISOR_LABEL"], "Fizz");
 
+	// check key "UPPER_DIVISOR_LABEL" and value "Buzz"
 	if (mp.find("UPPER_DIVISOR_LABEL") == mp.end())
 		BOOST_ERROR("UPPER_DIVISOR_LABEL not found");
 	else
 		BOOST_CHECK_EQUAL(mp["UPPER_DIVISOR_LABEL"], "Buzz");
 
+	// check map size
 	if (mp.size() != 5)
 		BOOST_ERROR("input map variable with wrong size!");
 //    std::cout << "test done\n";

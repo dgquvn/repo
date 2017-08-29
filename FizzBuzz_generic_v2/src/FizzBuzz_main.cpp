@@ -44,15 +44,26 @@ int main(int argc, char** argv){
     */
 
 	try{
+		/**
+		 * inputfile_loc, storing input file location
+		 * outputfile_loc, storing output file location
+		 */
 		std::string inputfile_loc, outputfile_loc;
+
+		/**
+		 * generalOptions, storing parsed arguments
+		 */
 		options_description generalOptions{"General"};
 		generalOptions.add_options()
 				("help,h", "Help screen")
 				("input", value<std::string>(&inputfile_loc), "Input file location")
 				("output", value<std::string>(&outputfile_loc), "Output file location");
 		variables_map vm;
+
+		// parse arguments to generalOptions and store to vm
 		store(parse_command_line(argc, argv, generalOptions), vm);
 		notify(vm);
+
 		if (vm.count("help"))
 			std::cout << generalOptions << "\n";
 		else if (inputfile_loc.empty())
@@ -60,10 +71,12 @@ int main(int argc, char** argv){
 		else if (outputfile_loc.empty())
 			std::cout << "output file location missing, enter --help for instruction.\n";
 		else{
-			std::cout << "input: " << inputfile_loc << '\n';
-			std::cout << "output: " << outputfile_loc << '\n';
+			// reading input file in Controller
 			Controller main_body(inputfile_loc);
+
+			// print out the log to output file
 			main_body.print(outputfile_loc);
+
 		}
 	}
     catch(char const* ex){

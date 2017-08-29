@@ -35,14 +35,31 @@
 #include "FileWriter.h"
 #include "FizzBuzz_config.hpp"
 
+/**
+ * test writing to outputfile from output log
+ */
 BOOST_AUTO_TEST_CASE(test_writer){
+
+	// subdirectory for outputfile
     std::string fileloc_rest{"/src/FizzBuzz_classes/tests/data/output.txt"};
+
+    // source file diectory
     std::string source_dir{FizzBuzz_source_dir};
+
+    // full directory
     std::string fileloc{source_dir + fileloc_rest};
+
+    // log
     std::vector<std::string> log{"who", "are", "you"};
+
     FileWriter w;
-	w.writer(log, fileloc);
+
+    // output log to output file
+    w.writer(log, fileloc);
+
     std:: ifstream file(fileloc);
+
+    // check output file content
     if (file.is_open()){
     	std::string line;
     	for (int i = 0; i < 3; i++){

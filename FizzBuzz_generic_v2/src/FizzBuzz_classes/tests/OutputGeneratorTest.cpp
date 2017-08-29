@@ -35,26 +35,29 @@
 #include <algorithm>
 #include "OutputGenerator.h"
 
-
+/**
+ * test default constructor
+ */
 BOOST_AUTO_TEST_CASE(test_d_g){
-	/**
-	 * test default constructor
-	 */
-
 	std::vector<std::string> op{"who", "are", "you"};
 	OutputGenerator g(op);
 	auto log = g.getOutput();
 	BOOST_REQUIRE_EQUAL(log.size(), op.size());
 	BOOST_REQUIRE(std::equal(op.cbegin(), op.cend(), log.cbegin()));
-//	BOOST_CHECK_EQUAL(g.getOutput(), op);
 }
 
-
+/**
+ * test OutputGenerator constructor for outputing log
+ */
 BOOST_AUTO_TEST_CASE(test_g){
 	Variables var(10,2,4,"F","B");
 	OutputGenerator g(var);
 	std::vector<std::string>& op = g.getOutput();
+
+	// check if the output log size is correct
     BOOST_REQUIRE_EQUAL(op.size(), 10);
+
+    // check the output log content
     for (int i = 1; i <= 10; i++){
 		if (i % 8 == 0)
 			BOOST_CHECK(op[i-1] == "FB");

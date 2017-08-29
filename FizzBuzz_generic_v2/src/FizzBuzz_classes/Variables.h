@@ -38,18 +38,65 @@
 #include <unordered_map>
 #include "InputProperties.h"
 
+/**
+ * A class for converting data from unordered_map to needed variables
+ */
 class Variables{
 public:
+
+	/**
+	 * default constructor for testing files
+	 * @param m_I, l_d, u_d, l_d_l, u_d_l correspond to private members, namely
+	 * max_Int, lower_divisor, upper_divisor, lower_div_lab, and upper_div_lab
+	 */
 	Variables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l);
+
+	/**
+	 * constructor for converting data from map to needed variables
+	 * @param input a instance of class InputProperties with input file parameters
+	 */
 	Variables(const InputProperties& input);
+
+	/**
+	 * member function for testing if input parameters are valid
+	 * @return 1 if count is 5, 0 otherwise
+	 */
 	bool isValid();
+
+	/**
+	 * membere functions for accessing private members by setting the paramters
+	 */
     void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l);
 private:
+
+    /**
+     * max interger for outputing FizzBuzz program
+     */
 	int max_Int;
+
+	/**
+	 * lower divisor for testing case in class OutputGenerator
+	 */
 	int lower_divisor;
+
+	/**
+	 * upper divisor for testing case in class OutputGenerator
+	 */
 	int upper_divisor;
+
+	/**
+	 * outputing label corresponding to lower divisor
+	 */
 	std::string lower_div_lab;
+
+	/**
+	 * outputing label corresponding to upper divisor
+	 */
 	std::string upper_div_lab;
+
+	/**
+	 * count how many variables are set
+	 */
 	int count = 0;
 };
 

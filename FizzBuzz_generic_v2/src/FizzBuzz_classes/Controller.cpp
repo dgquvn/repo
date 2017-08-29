@@ -31,21 +31,22 @@
  -----------------------------------------------------------------------------*/
 #include "Controller.h"
 
+/**
+ * Controller constructor for getting input properties
+ * and get the corresponding variables, and finally
+ * generate the output
+ */
 Controller::Controller(std::string inputfile_loc):
     input(inputfile_loc),
     var(input),
     output(var)
 {
-	/**
-	 * Controller constructor for getting input properties
-	 * and get the corresponding variables, and finally
-	 * generate the output
-	 */
 }
+
+/**
+ * write the output to the specific file location
+ */
 void Controller::print(std::string outputfile_loc){
-	/**
-	 * write the output to the specific file location
-	 */
 	FileWriter object;
     object.writer(output.getOutput(), outputfile_loc);
 }

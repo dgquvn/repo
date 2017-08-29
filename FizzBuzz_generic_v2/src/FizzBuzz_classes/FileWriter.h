@@ -39,8 +39,17 @@
 #include <vector>
 #include <fstream>
 
+/**
+ * a class for writing to file from output log
+ */
 class FileWriter{
 public:
+
+	/**
+	 * member function for writing to output file from output log
+	 * @param a output log
+	 * @param outputfile_loc output file location
+	 */
 	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
 };
 

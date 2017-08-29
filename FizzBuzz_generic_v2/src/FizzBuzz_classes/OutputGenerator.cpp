@@ -31,42 +31,60 @@
  -----------------------------------------------------------------------------*/
 #include "OutputGenerator.h"
 
+/**
+ * default constructor
+ */
 OutputGenerator::OutputGenerator(const std::vector<std::string>& op):
 output{op}
 {
-	/**
-	 * default constructor
-	 */
 }
 
+/**
+ * This is engine for generating the output string
+ */
 OutputGenerator::OutputGenerator(Variables& a){
-	/**
-	 * This is engine for generating the output string
-	 */
+
  //   std::cout << "OutputGenerator constructor\n";
 	int max_Int, lower_div, upper_div;
 	std::string lower_div_lab, upper_div_lab;
 	a.outputVar(max_Int, lower_div, upper_div, lower_div_lab, upper_div_lab);
 
+	// the multiplier for output the combined label
 	int product_div = lower_div * upper_div;
 	output.resize(max_Int);
+
+	// combined label
 	std::string combined = lower_div_lab + upper_div_lab;
+
+	// set threads number
+	omp_set_num_threads(4);
+
+	// openmp parallel for loop
+#pragma omp parallel for
     for (int i = 1; i <= max_Int; i++){
+
+    	// the multipliers of product_div output combined string
 		if (i % product_div == 0)
             output[i-1] = combined;
+
+		// the multipliers of upper divisor output upper divisor label
 		else if (i % upper_div == 0)
             output[i-1] = upper_div_lab;
+
+		// the multipliers of lower divisor output lower divisor label
 		else if (i % lower_div == 0)
             output[i-1] = lower_div_lab;
+
+		// the rest output the number
 		else
             output[i-1] = std::to_string(i);
 	}
 }
 
+/**
+ * return output log vector
+ */
 std::vector<std::string>& OutputGenerator::getOutput(){
-	/**
-	 * return output vector
-	 */
 	return output;
 }
 

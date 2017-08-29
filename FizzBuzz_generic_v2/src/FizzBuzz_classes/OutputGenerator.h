@@ -33,17 +33,38 @@
 #ifndef OUTPUTGENERATOR_H_
 #define OUTPUTGENERATOR_H_
 
+#include <omp.h>
 #include <iostream>
 #include <string>
 #include <vector>
 #include "Variables.h"
 
+/**
+ * a class for generating the output log based on input parameters
+ */
 class OutputGenerator{
 public:
+
+	/**
+	 * default constructor for testing file
+	 */
     OutputGenerator(const std::vector<std::string>& op);
+
+    /**
+     * constructor for building the output log based on the parameters
+     * @param a an instance of class Variables containing the parameters
+     */
     OutputGenerator(Variables& a);
+
+    /**
+     * accessing memeber function for accessing output log
+     */
 	std::vector<std::string>& getOutput();
 private:
+
+	/**
+	 * private member containing output log
+	 */
 	std::vector<std::string> output;
 };
 

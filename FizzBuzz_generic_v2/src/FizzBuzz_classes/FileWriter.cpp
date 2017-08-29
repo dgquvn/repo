@@ -31,10 +31,11 @@
  -----------------------------------------------------------------------------*/
 #include "FileWriter.h"
 
+/**
+ * This function write output log to output file
+ */
 void FileWriter::writer(const std::vector<std::string>& a, const std::string& outputfile_loc){
-	/**
-	 * This function write each variables to file
-	 */
+
 	std::ofstream file(outputfile_loc);
 	if (file.is_open()){
 		for (int i = 0; i < a.size(); i++){

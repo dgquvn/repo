@@ -37,15 +37,39 @@
 #include "OutputGenerator.h"
 #include "FileWriter.h"
 
+/**
+ * a class for controlling the process of reading parameters from
+ * input file, and output the corresponding log to output file
+ */
 class Controller {
 public:
 
+	/**
+	 * constructor for generating members from input file location
+	 * @inputfile_loc input file location
+	 */
 	Controller(std::string inputfile_loc);
 
+	/**
+	 * member function for writing output log to output file
+	 * @param outputfile_loc output file location
+	 */
     void print(std::string outputfile_loc);
 private:
+
+    /**
+     * a member containing a map with keys and values from input file
+     */
 	InputProperties input;
+
+	/**
+	 * a member for converting data from map to needed parameters
+	 */
 	Variables var;
+
+	/**
+	 * a member for generating output log
+	 */
 	OutputGenerator output;
 };
 

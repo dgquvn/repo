@@ -31,36 +31,50 @@
  -----------------------------------------------------------------------------*/
 #include "InputProperties.h"
 
-
+/**
+ * default constructor initilized by a unordered_map
+ */
 InputProperties::InputProperties(const std::unordered_map<std::string, std::string>& input_mp):
 mp{input_mp}
 {
-	/**
-	 * default constructor getting initialized by input_mp
-	 */
 }
 
-
+/**
+ * read parameters from input file and store the information as
+ * pairs of {key, value}
+ */
 InputProperties::InputProperties(std::string& file_loc){
-	/**
-	 * reading variable from the file and set the variables
-	 * as pair of {key, value} in strings
-	 */
+
 	std::ifstream file(file_loc);
 	if (file.is_open()){
 		std::string line;
         while(std::getline(file,line)){
+
+        	// find the expression with "="
 			auto pos = line.find('=');
 			if (pos != -1){
+
+				// set the key to the left side of '='
 				std::string key = line.substr(0, pos);
+
+				// delete white spaces from key
                 boost::algorithm::trim(key);
+
+                // transform key to uppercase
 				std::transform(key.begin(), key.end(), key.begin(), ::toupper);
+
+				// set the value to the right side of '='
 				std::string val = line.substr(pos+1, line.size()-pos-1);
+
+				// delete white spaces from value
                 boost::algorithm::trim(val);
+
+                // store key and value to the map
 				mp[key] = val;
 //                std::cout << "key: " << key << " val: " << val << "\n";
 			}
 		}
+
 		file.close();
 	}
 	else{
@@ -68,10 +82,10 @@ InputProperties::InputProperties(std::string& file_loc){
 	}
 }
 
+/**
+ * return the saved pairs of key and values
+ */
 const std::unordered_map<std::string, std::string>& InputProperties::getVar() const{
-	/**
-	 * return the saved pairs of key and values
-	 */
 	return mp;
 }
 
