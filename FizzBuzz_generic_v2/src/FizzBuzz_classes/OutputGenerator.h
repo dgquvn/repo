@@ -36,12 +36,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "variables.h"
+#include "Variables.h"
 
 class OutputGenerator{
 public:
     OutputGenerator(const std::vector<std::string>& op);
-    OutputGenerator(variables& a);
+    OutputGenerator(Variables& a);
 	std::vector<std::string>& getOutput();
 private:
 	std::vector<std::string> output;

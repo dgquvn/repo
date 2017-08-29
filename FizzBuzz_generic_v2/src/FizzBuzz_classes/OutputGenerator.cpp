@@ -39,7 +39,7 @@ output{op}
 	 */
 }
 
-OutputGenerator::OutputGenerator(variables& a){
+OutputGenerator::OutputGenerator(Variables& a){
 	/**
 	 * This is engine for generating the output string
 	 */

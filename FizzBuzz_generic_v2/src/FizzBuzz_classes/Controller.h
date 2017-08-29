@@ -34,8 +34,6 @@
 #define CONTROLLER_H_
 
 #include <string>
-#include "inputProperties.h"
-#include "variables.h"
 #include "OutputGenerator.h"
 #include "FileWriter.h"
 
@@ -46,8 +44,8 @@ public:
 
     void print(std::string outputfile_loc);
 private:
-	inputProperties input;
-	variables var;
+	InputProperties input;
+	Variables var;
 	OutputGenerator output;
 };
 

@@ -30,20 +30,26 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef FILEWRITER_H_
-#define FILEWRITER_H_
+#ifndef INPUTPROPERTIES_H_
+#define INPUTPROPERTIES_H_
 
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <vector>
-#include <fstream>
+#include <algorithm>
+#include <unordered_map>
+#include <ctype.h>
+#include <boost/algorithm/string/trim.hpp>
 
-class FileWriter{
+class InputProperties{
 public:
-	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
+    InputProperties(const std::unordered_map<std::string, std::string>& input_mp);
+    InputProperties(std::string& file_loc);
+    const std::unordered_map<std::string, std::string>& getVar() const;
+private:
+	std::unordered_map<std::string, std::string> mp;
 };
 
 
 
-#endif /* FILEWRITER_H_ */
+#endif /* INPUTPROPERTIES_H_ */

@@ -29,21 +29,65 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
+#include "Variables.h"
 
-#ifndef FILEWRITER_H_
-#define FILEWRITER_H_
+Variables::Variables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l):
+max_Int{m_I}, lower_divisor{l_d}, upper_divisor{u_d},
+lower_div_lab{l_d_l}, upper_div_lab{u_d_l}, count{5}
+{
+	/**
+	 * default setting of constructor
+	 */
+}
 
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <fstream>
+Variables::Variables(const InputProperties& input){
+	/**
+	 * This is for setting variables
+	 */
+//    std::cout << "variables constructor\n";
+    std::unordered_map<std::string, std::string> mp = input.getVar();
+    if (mp.find("MAX_INT") != mp.end()){
+		max_Int = std::stoi(mp["MAX_INT"]);
+		count++;
+	}
+    if (mp.find("LOWER_DIVISOR") != mp.end()){
+		lower_divisor = std::stoi(mp["LOWER_DIVISOR"]);
+		count++;
+	}
+    if (mp.find("UPPER_DIVISOR") != mp.end()){
+		upper_divisor = std::stoi(mp["UPPER_DIVISOR"]);
+		count++;
+	}
+    if (mp.find("LOWER_DIVISOR_LABEL") != mp.end()){
+		lower_div_lab = mp["LOWER_DIVISOR_LABEL"];
+		count++;
+	}
+    if (mp.find("UPPER_DIVISOR_LABEL") != mp.end()){
+		upper_div_lab = mp["UPPER_DIVISOR_LABEL"];
+		count++;
+	}
+}
 
-class FileWriter{
-public:
-	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
-};
+bool Variables::isValid(){
+	if (count == 5)
+		return true;
+	else
+		return false;
+}
+
+
+void Variables::outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l){
+	if (isValid()){
+		max_I = max_Int;
+		l_d = lower_divisor;
+		u_d = upper_divisor;
+        l_d_l = lower_div_lab;
+        u_d_l = upper_div_lab;
+	}
+	else{
+		throw "wrong format of input file";
+	}
+}
 
 
 
-#endif /* FILEWRITER_H_ */

@@ -29,21 +29,49 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-
-#ifndef FILEWRITER_H_
-#define FILEWRITER_H_
-
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <fstream>
-
-class FileWriter{
-public:
-	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
-};
+#include "InputProperties.h"
 
 
+InputProperties::InputProperties(const std::unordered_map<std::string, std::string>& input_mp):
+mp{input_mp}
+{
+	/**
+	 * default constructor getting initialized by input_mp
+	 */
+}
 
-#endif /* FILEWRITER_H_ */
+
+InputProperties::InputProperties(std::string& file_loc){
+	/**
+	 * reading variable from the file and set the variables
+	 * as pair of {key, value} in strings
+	 */
+ //   std::cout << "inputProperties constructor\n";
+	std::ifstream file(file_loc);
+	if (file.is_open()){
+		std::string line;
+        while(std::getline(file,line)){
+			auto pos = line.find('=');
+			if (pos != -1){
+				std::string key = line.substr(0, pos);
+                boost::algorithm::trim(key);
+				std::transform(key.begin(), key.end(), key.begin(), ::toupper);
+				std::string val = line.substr(pos+1, line.size()-pos-1);
+                boost::algorithm::trim(val);
+				mp[key] = val;
+//                std::cout << "key: " << key << " val: " << val << "\n";
+			}
+		}
+		file.close();
+	}
+}
+
+const std::unordered_map<std::string, std::string>& InputProperties::getVar() const{
+	/**
+	 * return the saved pairs of key and values
+	 */
+	return mp;
+}
+
+
+

@@ -30,20 +30,30 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef FILEWRITER_H_
-#define FILEWRITER_H_
+#ifndef VARIABLES_H_
+#define VARIABLES_H_
 
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <vector>
-#include <fstream>
+#include <unordered_map>
+#include "InputProperties.h"
 
-class FileWriter{
+class Variables{
 public:
-	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
+	Variables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l);
+	Variables(const InputProperties& input);
+	bool isValid();
+    void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l);
+private:
+	int max_Int;
+	int lower_divisor;
+	int upper_divisor;
+	std::string lower_div_lab;
+	std::string upper_div_lab;
+	int count = 0;
 };
 
 
 
-#endif /* FILEWRITER_H_ */
+
+#endif /* VARIABLES_H_ */

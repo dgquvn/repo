@@ -29,21 +29,29 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-
-#ifndef FILEWRITER_H_
-#define FILEWRITER_H_
-
+#define BOOST_TEST_MODULE TEST_WRITING_TO_FILE
+#include <boost/test/included/unit_test.hpp>
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <fstream>
+#include "FileWriter.h"
+#include "FizzBuzz_config.hpp"
 
-class FileWriter{
-public:
-	void writer(const std::vector<std::string>& a, const std::string& outputfile_loc);
-};
+BOOST_AUTO_TEST_CASE(test_writer){
+    std::string fileloc_rest{"/src/FizzBuzz_classes/tests/data/output.txt"};
+    std::string source_dir{FizzBuzz_source_dir};
+    std::string fileloc{source_dir + fileloc_rest};
+    std::vector<std::string> log{"who", "are", "you"};
+    FileWriter w;
+	w.writer(log, fileloc);
+    std:: ifstream file(fileloc);
+    if (file.is_open()){
+    	std::string line;
+    	for (int i = 0; i < 3; i++){
+    		std::getline(file, line);
+    		BOOST_CHECK_EQUAL(line, log[i]);
+    	}
+    	file.close();
+    }
+}
 
 
 
-#endif /* FILEWRITER_H_ */
