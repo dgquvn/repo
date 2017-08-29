@@ -12,6 +12,12 @@ include(tests)
 
 configure_file("${CMAKE_SOURCE_DIR}/cmake/FizzBuzz_config.hpp.in" "${CMAKE_BINARY_DIR}/FizzBuzz_config.hpp")
 
+# Setup OpenMp
+find_package(OpenMP)
+if (OPENMP_FOUND)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
+
 # Setup Doxygen
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
