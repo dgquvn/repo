@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(test_d_constructor){
 
 
 BOOST_AUTO_TEST_CASE(test_c){
-    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/input.txt"};
+    std::string fileloc_rest{"/src/FizzBuzz_classes/tests/data/input.txt"};
     std::string source_dir{FizzBuzz_source_dir};
     std::string fileloc{source_dir + fileloc_rest};
 //    std::cout << "File: " << fileloc << "\n";

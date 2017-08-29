@@ -36,7 +36,7 @@
 #include "FizzBuzz_config.hpp"
 
 BOOST_AUTO_TEST_CASE(test_writer){
-    std::string fileloc_rest{"/FizzBuzz_classes/tests/data/output.txt"};
+    std::string fileloc_rest{"/src/FizzBuzz_classes/tests/data/output.txt"};
     std::string source_dir{FizzBuzz_source_dir};
     std::string fileloc{source_dir + fileloc_rest};
     std::vector<std::string> log{"who", "are", "you"};
