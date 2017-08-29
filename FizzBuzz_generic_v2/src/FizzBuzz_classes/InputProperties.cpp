@@ -46,7 +46,6 @@ InputProperties::InputProperties(std::string& file_loc){
 	 * reading variable from the file and set the variables
 	 * as pair of {key, value} in strings
 	 */
- //   std::cout << "inputProperties constructor\n";
 	std::ifstream file(file_loc);
 	if (file.is_open()){
 		std::string line;
@@ -63,6 +62,9 @@ InputProperties::InputProperties(std::string& file_loc){
 			}
 		}
 		file.close();
+	}
+	else{
+		throw("wrong input file location");
 	}
 }
 

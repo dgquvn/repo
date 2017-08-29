@@ -54,7 +54,8 @@ BOOST_AUTO_TEST_CASE(test_g){
 	Variables var(10,2,4,"F","B");
 	OutputGenerator g(var);
 	std::vector<std::string>& op = g.getOutput();
-	for (int i = 1; i < 10; i++){
+    BOOST_REQUIRE_EQUAL(op.size(), 10);
+    for (int i = 1; i <= 10; i++){
 		if (i % 8 == 0)
 			BOOST_CHECK(op[i-1] == "FB");
 		else if (i % 4 == 0)

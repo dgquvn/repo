@@ -51,7 +51,7 @@ OutputGenerator::OutputGenerator(Variables& a){
 	int product_div = lower_div * upper_div;
 	output.resize(max_Int);
 	std::string combined = lower_div_lab + upper_div_lab;
-    for (int i = 1; i < max_Int; i++){
+    for (int i = 1; i <= max_Int; i++){
 		if (i % product_div == 0)
             output[i-1] = combined;
 		else if (i % upper_div == 0)

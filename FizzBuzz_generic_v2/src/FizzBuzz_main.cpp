@@ -29,9 +29,12 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
+#include <boost/program_options.hpp>
 #include <iostream>
 #include <string>
 #include "Controller.h"
+
+using namespace boost::program_options;
 
 int main(int argc, char** argv){
     /**
@@ -40,13 +43,34 @@ int main(int argc, char** argv){
     * finally output the strings
     */
 
-    std::string inputfile_loc{argv[1]};
+	try{
+		std::string inputfile_loc, outputfile_loc;
+		options_description generalOptions{"General"};
+		generalOptions.add_options()
+				("help,h", "Help screen")
+				("input", value<std::string>(&inputfile_loc), "Input file location")
+				("output", value<std::string>(&outputfile_loc), "Output file location");
+		variables_map vm;
+		store(parse_command_line(argc, argv, generalOptions), vm);
+		notify(vm);
+		if (vm.count("help"))
+			std::cout << generalOptions << "\n";
+		else if (inputfile_loc.empty())
+			std::cout << "input file location missing, enter --help for instruction.\n";
+		else if (outputfile_loc.empty())
+			std::cout << "output file location missing, enter --help for instruction.\n";
+		else{
+			std::cout << "input: " << inputfile_loc << '\n';
+			std::cout << "output: " << outputfile_loc << '\n';
+			Controller main_body(inputfile_loc);
+			main_body.print(outputfile_loc);
+		}
+	}
+    catch(char const* ex){
+    	std::cerr << ex << "\n";
+    	std::cout << "enter --help to see instruction\n";
+    }
 
-    std::string outputfile_loc{argv[2]};
-
-	Controller main_body(inputfile_loc);
-
-    main_body.print(outputfile_loc);
 
     return 0;
 }

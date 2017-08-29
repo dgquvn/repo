@@ -5,4 +5,4 @@
 # cmake ..
 # make
 # make test
-# ./FizzBuzz_v2 (path to input file) (path to output file)
+# src/FizzBuzz_v2 --input (path to input file) --output (path to output file)

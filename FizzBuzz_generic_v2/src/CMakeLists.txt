@@ -4,6 +4,10 @@ set(FizzBuzz_class_dir
 include_directories(${FizzBuzz_class_dir})
 add_subdirectory(FizzBuzz_classes)
 
-add_executable(Fizz_Buzz_v2 FizzBuzz_main.cpp)
 
-target_link_libraries(Fizz_Buzz_v2 FizzBuzz_classes)
+find_package(Boost REQUIRED COMPONENTS program_options)
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+  add_executable(Fizz_Buzz_v2 FizzBuzz_main.cpp)
+  target_link_libraries(Fizz_Buzz_v2 ${Boost_PROGRAM_OPTIONS_LIBRARIES} FizzBuzz_classes)
+endif()

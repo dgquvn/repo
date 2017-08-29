@@ -35,13 +35,15 @@ void FileWriter::writer(const std::vector<std::string>& a, const std::string& ou
 	/**
 	 * This function write each variables to file
 	 */
- //   std::cout << "writer\n";
 	std::ofstream file(outputfile_loc);
 	if (file.is_open()){
 		for (int i = 0; i < a.size(); i++){
 			file << a[i] << "\n";
 		}
 		file.close();
+	}
+	else{
+		throw("Not a output file");
 	}
 }
 
