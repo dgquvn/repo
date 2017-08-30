@@ -15,8 +15,8 @@ upper_divisor = 4
 lower_divisor_label = Fizz 
 
 upper_divisor_label = Buzz 
+#
+The product of lower_divisor and upper_divisor is 8 and it will be checked first, and then upper_divisor (4) is checked, finally lower_divisor (2) is checked.
 
-##The product of lower_divisor and upper_divisor is 8 and it will be checked first, and then upper_divisor (4) is checked, finally lower_divisor (2) is checked.
-
-##The corresponding output will be 1, Fizz, 3, Buzz, 5, Fizz, 7, FizzBuzz, ...
+The corresponding output will be 1, Fizz, 3, Buzz, 5, Fizz, 7, FizzBuzz, ...
 #
