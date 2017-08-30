@@ -36,14 +36,15 @@
 
 using namespace boost::program_options;
 
+/**
+* Main program for getting argument from user
+* and read the file with specific location
+* finally output the strings
+*/
 int main(int argc, char** argv){
-    /**
-    * Main program for getting argument from user
-    * and read the file with specific location
-    * finally output the strings
-    */
 
 	try{
+
 		/**
 		 * inputfile_loc, storing input file location
 		 * outputfile_loc, storing output file location
