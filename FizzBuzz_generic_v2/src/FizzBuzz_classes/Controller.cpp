@@ -67,7 +67,9 @@ Controller::Controller(std::string inputfile_loc){
  * destructor
  */
 Controller::~Controller(){
-
+	delete input;
+	delete var;
+	delete output;
 }
 /**
  * write the output to the specific file location
