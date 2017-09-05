@@ -33,48 +33,26 @@
 #ifndef INPUTPROPERTIES_H_
 #define INPUTPROPERTIES_H_
 
-#include <fstream>
-#include <iostream>
+#include <vector>
 #include <string>
-#include <algorithm>
 #include <unordered_map>
-#include <ctype.h>
-#include <boost/algorithm/string/trim.hpp>
-
 /**
- * This class read the input file parameters and store the values in
- * a unordered_map
+ * This is the interface (abstract class) for reading the input file parameters
+ * and storing the values
  */
 class InputProperties{
 public:
 
-	/**
-	 * default constructor for testing files
-	 */
-    InputProperties(const std::unordered_map<std::string, std::string>& input_mp);
+    /**
+     * pure virtual member function for TwoInputProperties to return stored map
+     */
+    virtual const std::unordered_map<std::string, std::string>& getVar() const {}
 
     /**
-     * constructor used in the program
-     * @param file_loc the input file location
+     * pure virtual member function for GeneralInputProperties to return stored data
      */
-    InputProperties(std::string& file_loc);
+    virtual const std::vector<std::vector<std::string>>& getVar(int g) const {}
 
-    /**
-     * member function for accessing stored map
-     * @return the private member
-     */
-    const std::unordered_map<std::string, std::string>& getVar() const;
-private:
-
-    /**
-     * private member map for storing parameters
-     * containing keys "INT_MAX", "LOWER_DIVISOR", "UPPER_DIVISOR",
-     * "LOWER_DIVISOR_LABEL", and "UPPER_DIVISOR_LABEL", and their
-     * corresponding string values
-     */
-	std::unordered_map<std::string, std::string> mp;
 };
-
-
 
 #endif /* INPUTPROPERTIES_H_ */

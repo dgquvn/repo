@@ -30,43 +30,53 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
+#ifndef TWOINPUTPROPERTIES_H_
+#define TWOINPUTPROPERTIES_H_
 
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <vector>
+#include <algorithm>
+#include <unordered_map>
 #include <ctype.h>
+#include <boost/algorithm/string/trim.hpp>
 #include "InputProperties.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * This class read the input file parameters and store the values in
+ * a unordered_map
  */
-class Variables{
+class TwoInputProperties : public InputProperties{
 public:
 
 	/**
-	 * check if the input parameters are valid
+	 * default constructor for testing files
 	 */
-	bool isValid() { return valid; }
+    TwoInputProperties(const std::unordered_map<std::string, std::string>& input_mp);
 
-	/**
-	 * virtual member function for TwoVariables
-	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+    /**
+     * constructor used in the program
+     * @param file_loc the input file location
+     */
+    TwoInputProperties(std::string& file_loc);
 
-	/**
-	 * virtual member function for GeneralVariables
-	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
 
-protected:
-	/**
-	 * check if the input parameters are valid
-	 */
-	bool valid = true;
+    /**
+     * member function for accessing stored map
+     * @return the private member
+     */
+    const std::unordered_map<std::string, std::string>& getVar() const;
+private:
 
+    /**
+     * private member map for storing parameters
+     * containing keys "INT_MAX", "LOWER_DIVISOR", "UPPER_DIVISOR",
+     * "LOWER_DIVISOR_LABEL", and "UPPER_DIVISOR_LABEL", and their
+     * corresponding string values
+     */
+	std::unordered_map<std::string, std::string> mp;
 };
 
-#endif /* VARIABLES_H_ */
+
+
+#endif /* TWOINPUTPROPERTIES_H_ */

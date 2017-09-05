@@ -29,63 +29,64 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#include "OutputGenerator.h"
+#include "TwoInputProperties.h"
 
 /**
- * default constructor
+ * default constructor initilized by a unordered_map
  */
-OutputGenerator::OutputGenerator(const std::vector<std::string>& op):
-output{op}
+TwoInputProperties::TwoInputProperties(const std::unordered_map<std::string, std::string>& input_mp):
+mp{input_mp}
 {
 }
 
 /**
- * This is engine for generating the output string
+ * read parameters from input file and store the information as
+ * pairs of {key, value}
  */
-OutputGenerator::OutputGenerator(Variables& a){
+TwoInputProperties::TwoInputProperties(std::string& file_loc){
 
- //   std::cout << "OutputGenerator constructor\n";
-	int max_Int, lower_div, upper_div;
-	std::string lower_div_lab, upper_div_lab;
-	a.outputVar(max_Int, lower_div, upper_div, lower_div_lab, upper_div_lab);
+	std::ifstream file(file_loc);
+	if (file.is_open()){
+		std::string line;
+        while(std::getline(file,line)){
 
-	// the multiplier for output the combined label
-	int product_div = lower_div * upper_div;
-	output.resize(max_Int);
+        	// find the expression with "="
+			auto pos = line.find('=');
+			if (pos != -1){
 
-	// combined label
-	std::string combined = lower_div_lab + upper_div_lab;
+				// set the key to the left side of '='
+				std::string key = line.substr(0, pos);
 
-	// set threads number
-	omp_set_num_threads(4);
+				// delete white spaces from key
+                boost::algorithm::trim(key);
 
-	// openmp parallel for loop
-#pragma omp parallel for
-    for (int i = 1; i <= max_Int; i++){
+                // transform key to uppercase
+				std::transform(key.begin(), key.end(), key.begin(), ::toupper);
 
-    	// the multipliers of product_div output combined string
-		if (i % product_div == 0)
-            output[i-1] = combined;
+				// set the value to the right side of '='
+				std::string val = line.substr(pos+1, line.size()-pos-1);
 
-		// the multipliers of upper divisor output upper divisor label
-		else if (i % upper_div == 0)
-            output[i-1] = upper_div_lab;
+				// delete white spaces from value
+                boost::algorithm::trim(val);
 
-		// the multipliers of lower divisor output lower divisor label
-		else if (i % lower_div == 0)
-            output[i-1] = lower_div_lab;
+                // store key and value to the map
+				mp[key] = val;
+//                std::cout << "key: " << key << " val: " << val << "\n";
+			}
+		}
 
-		// the rest output the number
-		else
-            output[i-1] = std::to_string(i);
+		file.close();
+	}
+	else{
+		throw("wrong input file location");
 	}
 }
 
 /**
- * return output log vector
+ * return the saved pairs of key and values
  */
-std::vector<std::string>& OutputGenerator::getOutput(){
-	return output;
+const std::unordered_map<std::string, std::string>& TwoInputProperties::getVar() const{
+	return mp;
 }
 
 

@@ -29,44 +29,60 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <ctype.h>
-#include "InputProperties.h"
+#include "TwoOutputGenerator.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * default constructor
  */
-class Variables{
-public:
+TwoOutputGenerator::TwoOutputGenerator(const std::vector<std::string>& op):
+output{op}
+{
+}
 
-	/**
-	 * check if the input parameters are valid
-	 */
-	bool isValid() { return valid; }
+/**
+ * This is engine for generating the output string
+ */
+TwoOutputGenerator::TwoOutputGenerator(Variables* a){
 
-	/**
-	 * virtual member function for TwoVariables
-	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+ //   std::cout << "OutputGenerator constructor\n";
+	int max_Int, lower_div, upper_div;
+	std::string lower_div_lab, upper_div_lab;
+	a->outputVar(max_Int, lower_div, upper_div, lower_div_lab, upper_div_lab);
 
-	/**
-	 * virtual member function for GeneralVariables
-	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
+	// the multiplier for output the combined label
+	int product_div = lower_div * upper_div;
+	output.resize(max_Int);
 
-protected:
-	/**
-	 * check if the input parameters are valid
-	 */
-	bool valid = true;
+	// combined label
+	std::string combined = lower_div_lab + upper_div_lab;
 
-};
+	// openmp parallel for loop
+#pragma omp parallel for
+    for (int i = 1; i <= max_Int; i++){
 
-#endif /* VARIABLES_H_ */
+    	// the multipliers of product_div output combined string
+		if (i % product_div == 0)
+            output[i-1] = combined;
+
+		// the multipliers of upper divisor output upper divisor label
+		else if (i % upper_div == 0)
+            output[i-1] = upper_div_lab;
+
+		// the multipliers of lower divisor output lower divisor label
+		else if (i % lower_div == 0)
+            output[i-1] = lower_div_lab;
+
+		// the rest output the number
+		else
+            output[i-1] = std::to_string(i);
+	}
+}
+
+/**
+ * get output log
+ */
+const std::vector<std::string>& TwoOutputGenerator::getOutput(){
+	return output;
+}
+
+

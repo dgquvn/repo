@@ -29,65 +29,75 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#include "InputProperties.h"
+#include "TwoVariables.h"
 
 /**
- * default constructor initilized by a unordered_map
+ * default setting of constructor
  */
-InputProperties::InputProperties(const std::unordered_map<std::string, std::string>& input_mp):
-mp{input_mp}
+TwoVariables::TwoVariables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l):
+max_Int{m_I}, lower_divisor{l_d}, upper_divisor{u_d},
+lower_div_lab{l_d_l}, upper_div_lab{u_d_l}
 {
 }
 
 /**
- * read parameters from input file and store the information as
- * pairs of {key, value}
+ * This is for setting variables from InputProperties
  */
-InputProperties::InputProperties(std::string& file_loc){
+TwoVariables::TwoVariables(InputProperties* input){
 
-	std::ifstream file(file_loc);
-	if (file.is_open()){
-		std::string line;
-        while(std::getline(file,line)){
+//    std::cout << "variables constructor\n";
 
-        	// find the expression with "="
-			auto pos = line.find('=');
-			if (pos != -1){
+	// store the map data from InputProperties
+    std::unordered_map<std::string, std::string> mp = input->getVar();
 
-				// set the key to the left side of '='
-				std::string key = line.substr(0, pos);
-
-				// delete white spaces from key
-                boost::algorithm::trim(key);
-
-                // transform key to uppercase
-				std::transform(key.begin(), key.end(), key.begin(), ::toupper);
-
-				// set the value to the right side of '='
-				std::string val = line.substr(pos+1, line.size()-pos-1);
-
-				// delete white spaces from value
-                boost::algorithm::trim(val);
-
-                // store key and value to the map
-				mp[key] = val;
-//                std::cout << "key: " << key << " val: " << val << "\n";
-			}
-		}
-
-		file.close();
+    int count = 0;
+    // find key "MAX_INT" and store the numerical value
+    if (mp.find("MAX_INT") != mp.end()){
+		max_Int = std::stoi(mp["MAX_INT"]);
+		count++;
 	}
-	else{
-		throw("wrong input file location");
+
+    // find key "LOWER_DIVISOR" and store the numerical value
+    if (mp.find("LOWER_DIVISOR") != mp.end()){
+		lower_divisor = std::stoi(mp["LOWER_DIVISOR"]);
+		count++;
 	}
+
+    // find key "UPPER_DIVISOR" and store the numerical value
+    if (mp.find("UPPER_DIVISOR") != mp.end()){
+		upper_divisor = std::stoi(mp["UPPER_DIVISOR"]);
+		count++;
+	}
+
+    // find key "LOWER_DIVISOR_LABEL" and store value
+    if (mp.find("LOWER_DIVISOR_LABEL") != mp.end()){
+		lower_div_lab = mp["LOWER_DIVISOR_LABEL"];
+		count++;
+	}
+
+    // find key "UPPER_DIVISOR_LABEL" and store value
+    if (mp.find("UPPER_DIVISOR_LABEL") != mp.end()){
+		upper_div_lab = mp["UPPER_DIVISOR_LABEL"];
+		count++;
+	}
+    if (count != 5)
+    	valid = false;
 }
+
 
 /**
- * return the saved pairs of key and values
+ * Output the parameters
  */
-const std::unordered_map<std::string, std::string>& InputProperties::getVar() const{
-	return mp;
+void TwoVariables::outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l){
+	if (Variables::isValid()){
+		max_I = max_Int;
+		l_d = lower_divisor;
+		u_d = upper_divisor;
+        l_d_l = lower_div_lab;
+        u_d_l = upper_div_lab;
+	}
+	else{
+		throw "wrong format of input file";
+	}
 }
-
-
 

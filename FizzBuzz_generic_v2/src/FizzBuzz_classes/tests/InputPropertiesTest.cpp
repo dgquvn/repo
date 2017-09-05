@@ -33,7 +33,8 @@
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 #include <algorithm>
-#include "InputProperties.h"
+#include "TwoInputProperties.h"
+#include "GeneralInputProperties.h"
 #include "FizzBuzz_config.hpp"
 
 /**
@@ -50,10 +51,10 @@ BOOST_AUTO_TEST_CASE(test_d_constructor){
 	input_mp.insert({"LOWER_D_L", "F"});
 	input_mp.insert({"UPPER_D_L", "B"});
 	std::cout << "test input\n";
-	InputProperties input(input_mp);
+	InputProperties* input= new TwoInputProperties(input_mp);
 
 	// Do the test. First get the input properties map as returned by the class.
-	auto retInputProps = input.getVar();
+	auto retInputProps = input->getVar();
 
 	// Check the size of the two maps
 	BOOST_REQUIRE_EQUAL(retInputProps.size(),input_mp.size());
@@ -79,10 +80,10 @@ BOOST_AUTO_TEST_CASE(test_c){
     // full directory
     std::string fileloc{source_dir + fileloc_rest};
 
-    InputProperties input(fileloc);
+    InputProperties* input = new TwoInputProperties(fileloc);
 
     // store the map to outside
-    std::unordered_map<std::string, std::string> mp = input.getVar();
+    std::unordered_map<std::string, std::string> mp = input->getVar();
 
     // check key "MAX_INT" and value "100"
 	if (mp.find("MAX_INT") == mp.end())

@@ -30,43 +30,67 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
+#ifndef TWOVARIABLES_H_
+#define TWOVARIABLES_H_
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <ctype.h>
-#include "InputProperties.h"
+#include <unordered_map>
+#include "Variables.h"
+#include "TwoInputProperties.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * A class for converting data from unordered_map to needed variables
  */
-class Variables{
+class TwoVariables : public Variables{
 public:
 
 	/**
-	 * check if the input parameters are valid
+	 * default constructor for testing files
+	 * @param m_I, l_d, u_d, l_d_l, u_d_l correspond to private members, namely
+	 * max_Int, lower_divisor, upper_divisor, lower_div_lab, and upper_div_lab
 	 */
-	bool isValid() { return valid; }
+	TwoVariables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l);
 
 	/**
-	 * virtual member function for TwoVariables
+	 * constructor for converting data from map to needed variables
+	 * @param input a instance of class InputProperties with input file parameters
 	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+	TwoVariables(InputProperties* input);
 
 	/**
-	 * virtual member function for GeneralVariables
+	 * membere functions for accessing private members by setting the paramters
 	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
+    void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l);
+private:
 
-protected:
+    /**
+     * max interger for outputing FizzBuzz program
+     */
+	int max_Int;
+
 	/**
-	 * check if the input parameters are valid
+	 * lower divisor for testing case in class OutputGenerator
 	 */
-	bool valid = true;
+	int lower_divisor;
 
+	/**
+	 * upper divisor for testing case in class OutputGenerator
+	 */
+	int upper_divisor;
+
+	/**
+	 * outputing label corresponding to lower divisor
+	 */
+	std::string lower_div_lab;
+
+	/**
+	 * outputing label corresponding to upper divisor
+	 */
+	std::string upper_div_lab;
 };
 
-#endif /* VARIABLES_H_ */
+
+
+
+#endif /* TWOVARIABLES_H_ */

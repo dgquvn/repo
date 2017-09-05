@@ -36,18 +36,44 @@
  * and get the corresponding variables, and finally
  * generate the output
  */
-Controller::Controller(std::string inputfile_loc):
-    input(inputfile_loc),
-    var(input),
-    output(var)
-{
+Controller::Controller(std::string inputfile_loc){
+	// check theinput file is which type of input
+	std::ifstream file{inputfile_loc};
+	if (file.is_open()){
+		std::string line;
+
+		// move to next line if there is no input parameter
+		while(line.find('_', 0) == std::string::npos){
+			std::getline(file, line);
+		}
+		file.close();
+
+		// check which input it is, '=' is only for TwoInputProperties
+		auto pos = line.find('=', 0);
+		if (pos != std::string::npos){
+			input = new TwoInputProperties(inputfile_loc);
+			var = new TwoVariables(input);
+			output = new TwoOutputGenerator(var);
+		}
+		else{
+			input = new GeneralInputProperties(inputfile_loc);
+			var = new GeneralVariables(input);
+			output = new GeneralOutputGenerator(var);
+		}
+	}
 }
 
+/**
+ * destructor
+ */
+Controller::~Controller(){
+
+}
 /**
  * write the output to the specific file location
  */
 void Controller::print(std::string outputfile_loc){
 	FileWriter object;
-    object.writer(output.getOutput(), outputfile_loc);
+    object.writer(output->getOutput(), outputfile_loc);
 }
 

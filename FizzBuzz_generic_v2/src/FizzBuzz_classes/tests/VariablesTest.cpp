@@ -31,13 +31,14 @@
  -----------------------------------------------------------------------------*/
 #define BOOST_TEST_MODULE TEST_VARIABLE
 #include <boost/test/included/unit_test.hpp>
-#include "Variables.h"
+#include "TwoVariables.h"
+#include "GeneralVariables.h"
 
 /**
  * testing default constructor
  */
 BOOST_AUTO_TEST_CASE(test_d_v){
-	Variables var(10,3,5,"F","B");
+	TwoVariables var(10,3,5,"F","B");
 	int max_I, l_d, u_d;
 	std::string l_d_l, u_d_l;
 	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
@@ -59,16 +60,16 @@ BOOST_AUTO_TEST_CASE(test_w){
 	input_mp.insert({"LOWER_DIVISOR_LABEL", "Fizz"});
 	input_mp.insert({"UPPER_DIVISOR_LABEL", "Buzz"});
 
-    InputProperties input(input_mp);
-    Variables var(input);
+    InputProperties* input = new TwoInputProperties(input_mp);
+    Variables* var = new TwoVariables(input);
 
     // check if five private members are stored
-	BOOST_CHECK_EQUAL(var.isValid(), true);
+	BOOST_CHECK_EQUAL(var->isValid(), true);
 	int max_I, l_d, u_d;
 	std::string l_d_l, u_d_l;
 
 	// accessing the private members
-	var.outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
+	var->outputVar(max_I, l_d, u_d, l_d_l, u_d_l);
 	BOOST_CHECK(max_I == 100);
 	BOOST_CHECK(l_d == 3);
 	BOOST_CHECK(u_d == 5);

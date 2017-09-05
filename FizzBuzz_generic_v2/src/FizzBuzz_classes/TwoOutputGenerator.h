@@ -30,43 +30,46 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
+#ifndef TWOOUTPUTGENERATOR_H_
+#define TWOOUTPUTGENERATOR_H_
 
+#include <omp.h>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <ctype.h>
-#include "InputProperties.h"
+#include "OutputGenerator.h"
+#include "TwoVariables.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * a class for generating the output log based on TwoVariables instance
  */
-class Variables{
+class TwoOutputGenerator : public OutputGenerator{
 public:
 
 	/**
-	 * check if the input parameters are valid
+	 * default constructor for testing file
 	 */
-	bool isValid() { return valid; }
+    TwoOutputGenerator(const std::vector<std::string>& op);
 
-	/**
-	 * virtual member function for TwoVariables
-	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+    /**
+     * constructor for building the output log based on the parameters
+     * @param a an instance of class Variables containing the parameters
+     */
+    TwoOutputGenerator(Variables* a);
 
-	/**
-	 * virtual member function for GeneralVariables
-	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
+    /**
+     * get output log
+     */
+    const std::vector<std::string>& getOutput();
 
-protected:
+private:
 	/**
-	 * check if the input parameters are valid
+	 * private member containing output log
 	 */
-	bool valid = true;
+	std::vector<std::string> output;
 
 };
 
-#endif /* VARIABLES_H_ */
+
+
+#endif /* TWOOUTPUTGENERATOR_H_ */

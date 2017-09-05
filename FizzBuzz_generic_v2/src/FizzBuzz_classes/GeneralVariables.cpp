@@ -29,78 +29,57 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-#include "Variables.h"
+#include "GeneralVariables.h"
 
 /**
  * default setting of constructor
  */
-Variables::Variables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l):
-max_Int{m_I}, lower_divisor{l_d}, upper_divisor{u_d},
-lower_div_lab{l_d_l}, upper_div_lab{u_d_l}, count{5}
+GeneralVariables::GeneralVariables(int max_I, const std::vector<std::pair<int, std::string>>& val_label):
+max_Int{max_I}, var{val_label}
 {
 }
 
 /**
  * This is for setting variables from InputProperties
  */
-Variables::Variables(const InputProperties& input){
+GeneralVariables::GeneralVariables(InputProperties* input){
 
-//    std::cout << "variables constructor\n";
 
-	// store the map data from InputProperties
-    std::unordered_map<std::string, std::string> mp = input.getVar();
+	// store the data from InputProperties
+	std::vector<std::vector<std::string>> mp = input->getVar(0);
 
-    // find key "MAX_INT" and store the numerical value
-    if (mp.find("MAX_INT") != mp.end()){
-		max_Int = std::stoi(mp["MAX_INT"]);
-		count++;
+    // go through each row to store values
+	for (int i = 0; i < mp.size(); i++){
+		if (mp[i][0] == "MAX_INT")
+			max_Int = std::stoi(mp[i].back());
+		else if (mp[i][0] == "_DIVISOR"){
+			int val;
+			std::string label;
+			bool exist_val = false;
+			for (int j = 1; j < mp[i].size() - 1; j += 2){
+				if (mp[i][j] == "VALUE"){
+					val = std::stoi(mp[i][j+1]);
+					exist_val = true;
+				}
+				else
+					label = mp[i][j+1];
+			}
+			if (exist_val && label.size() > 0){
+				var.push_back(std::make_pair(val, label));
+			}
+			else
+				valid = false;
+		}
 	}
-
-    // find key "LOWER_DIVISOR" and store the numerical value
-    if (mp.find("LOWER_DIVISOR") != mp.end()){
-		lower_divisor = std::stoi(mp["LOWER_DIVISOR"]);
-		count++;
-	}
-
-    // find key "UPPER_DIVISOR" and store the numerical value
-    if (mp.find("UPPER_DIVISOR") != mp.end()){
-		upper_divisor = std::stoi(mp["UPPER_DIVISOR"]);
-		count++;
-	}
-
-    // find key "LOWER_DIVISOR_LABEL" and store value
-    if (mp.find("LOWER_DIVISOR_LABEL") != mp.end()){
-		lower_div_lab = mp["LOWER_DIVISOR_LABEL"];
-		count++;
-	}
-
-    // find key "UPPER_DIVISOR_LABEL" and store value
-    if (mp.find("UPPER_DIVISOR_LABEL") != mp.end()){
-		upper_div_lab = mp["UPPER_DIVISOR_LABEL"];
-		count++;
-	}
-}
-
-/**
- * testing if input paramters are valid
- */
-bool Variables::isValid(){
-	if (count == 5)
-		return true;
-	else
-		return false;
 }
 
 /**
  * Output the parameters
  */
-void Variables::outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l){
-	if (isValid()){
+void GeneralVariables::outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label){
+	if (Variables::isValid()){
 		max_I = max_Int;
-		l_d = lower_divisor;
-		u_d = upper_divisor;
-        l_d_l = lower_div_lab;
-        u_d_l = upper_div_lab;
+		val_label = var;
 	}
 	else{
 		throw "wrong format of input file";

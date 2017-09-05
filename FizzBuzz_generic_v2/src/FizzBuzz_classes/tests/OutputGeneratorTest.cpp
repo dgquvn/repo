@@ -33,15 +33,16 @@
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 #include <algorithm>
-#include "OutputGenerator.h"
+#include "TwoOutputGenerator.h"
+#include "GeneralOutputGenerator.h"
 
 /**
  * test default constructor
  */
 BOOST_AUTO_TEST_CASE(test_d_g){
 	std::vector<std::string> op{"who", "are", "you"};
-	OutputGenerator g(op);
-	auto log = g.getOutput();
+	OutputGenerator* g = new TwoOutputGenerator(op);
+	auto log = g->getOutput();
 	BOOST_REQUIRE_EQUAL(log.size(), op.size());
 	BOOST_REQUIRE(std::equal(op.cbegin(), op.cend(), log.cbegin()));
 }
@@ -50,9 +51,9 @@ BOOST_AUTO_TEST_CASE(test_d_g){
  * test OutputGenerator constructor for outputing log
  */
 BOOST_AUTO_TEST_CASE(test_g){
-	Variables var(10,2,4,"F","B");
-	OutputGenerator g(var);
-	std::vector<std::string>& op = g.getOutput();
+	Variables* var = new TwoVariables(10,2,4,"F","B");
+	OutputGenerator* g = new TwoOutputGenerator(var);
+	auto op = g->getOutput();
 
 	// check if the output log size is correct
     BOOST_REQUIRE_EQUAL(op.size(), 10);

@@ -30,43 +30,54 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
+#ifndef GENERALVARIABLES_H_
+#define GENERALVARIABLES_H_
 
 #include <iostream>
 #include <string>
 #include <vector>
-#include <ctype.h>
-#include "InputProperties.h"
+#include <unordered_map>
+#include "Variables.h"
+#include "GeneralInputProperties.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * A class for converting data from unordered_map to needed variables
  */
-class Variables{
+class GeneralVariables : public Variables{
 public:
 
 	/**
-	 * check if the input parameters are valid
+	 * default constructor for testing files
+	 * @param max_I, val_label correspond to private members, namely
+	 * max_Int, var
 	 */
-	bool isValid() { return valid; }
+	GeneralVariables(int max_I, const std::vector<std::pair<int, std::string>>& val_label);
 
 	/**
-	 * virtual member function for TwoVariables
+	 * constructor for converting data from general input to needed variables
+	 * @param input a instance of class GeneralInputProperties with input file parameters
 	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+	GeneralVariables(InputProperties* input);
+
 
 	/**
-	 * virtual member function for GeneralVariables
+	 * membere functions for accessing private members by setting the paramters
 	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
+    void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label);
+private:
 
-protected:
+    /**
+     * max interger for outputing FizzBuzz program
+     */
+	int max_Int;
+
 	/**
-	 * check if the input parameters are valid
+	 * pairs of {val, label} as ordered
 	 */
-	bool valid = true;
-
+	std::vector<std::pair<int, std::string>> var;
 };
 
-#endif /* VARIABLES_H_ */
+
+
+
+#endif /* GENERALVARIABLES_H_ */

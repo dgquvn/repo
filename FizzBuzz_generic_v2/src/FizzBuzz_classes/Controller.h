@@ -33,8 +33,10 @@
 #ifndef CONTROLLER_H_
 #define CONTROLLER_H_
 
+#include <fstream>
 #include <string>
-#include "OutputGenerator.h"
+#include "TwoOutputGenerator.h"
+#include "GeneralOutputGenerator.h"
 #include "FileWriter.h"
 
 /**
@@ -51,6 +53,11 @@ public:
 	Controller(std::string inputfile_loc);
 
 	/**
+	 * destructor
+	 */
+	~Controller();
+
+	/**
 	 * member function for writing output log to output file
 	 * @param outputfile_loc output file location
 	 */
@@ -60,17 +67,17 @@ private:
     /**
      * a member containing a map with keys and values from input file
      */
-	InputProperties input;
+	InputProperties* input;
 
 	/**
 	 * a member for converting data from map to needed parameters
 	 */
-	Variables var;
+	Variables* var;
 
 	/**
 	 * a member for generating output log
 	 */
-	OutputGenerator output;
+	OutputGenerator* output;
 };
 
 #endif /* CONTROLLER_H_ */

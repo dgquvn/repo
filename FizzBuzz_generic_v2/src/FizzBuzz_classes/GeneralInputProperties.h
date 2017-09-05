@@ -30,43 +30,62 @@
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
 
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
+#ifndef GENERALINPUTPROPERTIES_H_
+#define GENERALINPUTPROPERTIES_H_
 
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <unordered_map>
 #include <ctype.h>
+#include <boost/algorithm/string/trim.hpp>
 #include "InputProperties.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * This class read the input file parameters and store the values in
+ * a unordered_map
  */
-class Variables{
+class GeneralInputProperties : public InputProperties{
 public:
 
 	/**
-	 * check if the input parameters are valid
+	 * default constructor for testing files
 	 */
-	bool isValid() { return valid; }
+    GeneralInputProperties(const std::vector<std::vector<std::string>>& input_mp);
 
-	/**
-	 * virtual member function for TwoVariables
-	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+    /**
+     * constructor used in the program
+     * @param file_loc the input file location
+     */
+    GeneralInputProperties(std::string& file_loc);
 
-	/**
-	 * virtual member function for GeneralVariables
-	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
 
-protected:
-	/**
-	 * check if the input parameters are valid
-	 */
-	bool valid = true;
+    /**
+     * get word or number from a line from a postition
+     * @param, line is the line to be parsed
+     * @param, pos is the position desired for get a word or number
+     */
+    static std::string getWord(const std::string& line, int& pos);
 
+    /**
+     * member function for accessing stored parameters
+     * @return the private member
+     */
+    const std::vector<std::vector<std::string>>& getVar(int g) const;
+private:
+
+    /**
+     * private member vector for storing parameters,
+     * containing key "INT_MAX" and its value, and multiples
+     * "_DIVISOR" with corresponding values and labels as the format
+     * "_DIVISOR", "VALUE", (), "LABEL", () or
+     * "_DIVISOR", "LABEL", (), "VALUE", ()
+     */
+	std::vector<std::vector<std::string>> mp;
 };
 
-#endif /* VARIABLES_H_ */
+
+
+#endif /* GENERALINPUTPROPERTIES_H_ */

@@ -29,44 +29,49 @@
 
  Author(s): Guoqiang Deng (dgquvn <at> gmail <dot> com)
  -----------------------------------------------------------------------------*/
-
-#ifndef VARIABLES_H_
-#define VARIABLES_H_
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <ctype.h>
-#include "InputProperties.h"
+#include "GeneralOutputGenerator.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
- * as needed variables
+ * default constructor
  */
-class Variables{
-public:
+GeneralOutputGenerator::GeneralOutputGenerator(const std::vector<std::string>& op):
+output{op}
+{
+}
 
-	/**
-	 * check if the input parameters are valid
-	 */
-	bool isValid() { return valid; }
+/**
+ * This is engine for generating the output string
+ */
+GeneralOutputGenerator::GeneralOutputGenerator(Variables* a){
 
-	/**
-	 * virtual member function for TwoVariables
-	 */
-	virtual void outputVar(int& max_I, int& l_d, int& u_d, std::string& l_d_l, std::string& u_d_l) {}
+ //   std::cout << "OutputGenerator constructor\n";
+	int max_Int;
+	std::vector<std::pair<int, std::string>> var;
+	a->outputVar(max_Int, var);
 
-	/**
-	 * virtual member function for GeneralVariables
-	 */
-	virtual void outputVar(int& max_I, std::vector<std::pair<int, std::string>>& val_label) {}
+	// resize the output vector
+	output.resize(max_Int);
 
-protected:
-	/**
-	 * check if the input parameters are valid
-	 */
-	bool valid = true;
 
-};
+	// openmp parallel for loop
+#pragma omp parallel for
+    for (int i = 1; i <= max_Int; i++){
 
-#endif /* VARIABLES_H_ */
+    	// check each divisor to see if i is divisiable by the divisor
+    	for (int j = 0; j < var.size(); j++){
+    		if (i % var[j].first == 0)
+    			output[i-1] += var[j].second;
+    	}
+
+    	if (output[i-1].empty())
+    		output[i-1] = std::to_string(i);
+	}
+}
+
+/**
+ * get output log
+ */
+const std::vector<std::string>& GeneralOutputGenerator::getOutput(){
+	return output;
+}
+
