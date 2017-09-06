@@ -36,7 +36,7 @@
  * and get the corresponding variables, and finally
  * generate the output
  */
-Controller::Controller(std::string inputfile_loc){
+Controller::Controller(const std::string& inputfile_loc){
 	// check theinput file is which type of input
 	std::ifstream file{inputfile_loc};
 	if (file.is_open()){
@@ -74,7 +74,7 @@ Controller::~Controller(){
 /**
  * write the output to the specific file location
  */
-void Controller::print(std::string outputfile_loc){
+void Controller::print(const std::string& outputfile_loc) const{
 	FileWriter object;
     object.writer(output->getOutput(), outputfile_loc);
 }

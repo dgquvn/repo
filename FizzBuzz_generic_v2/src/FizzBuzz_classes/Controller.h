@@ -50,7 +50,7 @@ public:
 	 * constructor for generating members from input file location
 	 * @inputfile_loc input file location
 	 */
-	Controller(std::string inputfile_loc);
+	Controller(const std::string & inputfile_loc);
 
 	/**
 	 * destructor
@@ -61,7 +61,7 @@ public:
 	 * member function for writing output log to output file
 	 * @param outputfile_loc output file location
 	 */
-    void print(std::string outputfile_loc);
+    void print(const std::string & outputfile_loc) const;
 private:
 
     /**

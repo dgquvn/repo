@@ -58,7 +58,7 @@ public:
      * constructor used in the program
      * @param file_loc the input file location
      */
-    TwoInputProperties(std::string& file_loc);
+    TwoInputProperties(const std::string& file_loc);
 
 
     /**

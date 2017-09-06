@@ -81,7 +81,7 @@ TwoOutputGenerator::TwoOutputGenerator(Variables* a){
 /**
  * get output log
  */
-const std::vector<std::string>& TwoOutputGenerator::getOutput(){
+const std::vector<std::string>& TwoOutputGenerator::getOutput() const{
 	return output;
 }
 

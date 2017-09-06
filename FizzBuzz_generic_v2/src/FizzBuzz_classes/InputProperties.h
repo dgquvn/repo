@@ -37,19 +37,19 @@
 #include <string>
 #include <unordered_map>
 /**
- * This is the interface (abstract class) for reading the input file parameters
+ * This is an abstract class for reading the input file parameters
  * and storing the values
  */
 class InputProperties{
 public:
 
     /**
-     * pure virtual member function for TwoInputProperties to return stored map
+     * virtual member function for TwoInputProperties to return stored map
      */
     virtual const std::unordered_map<std::string, std::string>& getVar() const {}
 
     /**
-     * pure virtual member function for GeneralInputProperties to return stored data
+     * virtual member function for GeneralInputProperties to return stored data
      */
     virtual const std::vector<std::vector<std::string>>& getVar(int g) const {}
 

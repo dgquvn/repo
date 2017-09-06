@@ -68,7 +68,7 @@ std::string GeneralInputProperties::getWord(const std::string& line, int& pos){
  * as {"MAX_INT", "val"}, and {"_DIVISOR", "val", "label"} or
  * {"_DIVISOR", "label", "val"}, where the order is preserved
  */
-GeneralInputProperties::GeneralInputProperties(std::string& file_loc){
+GeneralInputProperties::GeneralInputProperties(const std::string& file_loc){
 
 	std::ifstream file(file_loc);
 

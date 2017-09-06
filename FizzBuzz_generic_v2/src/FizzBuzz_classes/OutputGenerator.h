@@ -46,7 +46,7 @@ public:
     /**
      * accessing memeber function for accessing output log
      */
-    virtual const std::vector<std::string>& getOutput() = 0;
+    virtual const std::vector<std::string>& getOutput() const = 0;
 };
 
 

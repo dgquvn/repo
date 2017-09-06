@@ -60,7 +60,7 @@ public:
     /**
      * get output log
      */
-    const std::vector<std::string>& getOutput();
+    const std::vector<std::string>& getOutput() const;
 
 private:
 	/**

@@ -50,7 +50,7 @@ public:
 	 * @param m_I, l_d, u_d, l_d_l, u_d_l correspond to private members, namely
 	 * max_Int, lower_divisor, upper_divisor, lower_div_lab, and upper_div_lab
 	 */
-	TwoVariables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l);
+	TwoVariables(int m_I, int l_d, int u_d, const std::string& l_d_l, const std::string& u_d_l);
 
 	/**
 	 * constructor for converting data from map to needed variables

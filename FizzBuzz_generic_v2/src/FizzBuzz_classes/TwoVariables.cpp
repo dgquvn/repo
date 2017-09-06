@@ -34,7 +34,7 @@
 /**
  * default setting of constructor
  */
-TwoVariables::TwoVariables(int m_I, int l_d, int u_d, std::string l_d_l, std::string u_d_l):
+TwoVariables::TwoVariables(int m_I, int l_d, int u_d, const std::string& l_d_l, const std::string& u_d_l):
 max_Int{m_I}, lower_divisor{l_d}, upper_divisor{u_d},
 lower_div_lab{l_d_l}, upper_div_lab{u_d_l}
 {

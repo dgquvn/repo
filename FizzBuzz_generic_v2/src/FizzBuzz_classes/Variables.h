@@ -40,7 +40,7 @@
 #include "InputProperties.h"
 
 /**
- * An interface (abstract class) for converting data from InputProperties
+ * An abstract class for converting data from InputProperties
  * as needed variables
  */
 class Variables{

@@ -43,7 +43,7 @@ mp{input_mp}
  * read parameters from input file and store the information as
  * pairs of {key, value}
  */
-TwoInputProperties::TwoInputProperties(std::string& file_loc){
+TwoInputProperties::TwoInputProperties(const std::string& file_loc){
 
 	std::ifstream file(file_loc);
 	if (file.is_open()){

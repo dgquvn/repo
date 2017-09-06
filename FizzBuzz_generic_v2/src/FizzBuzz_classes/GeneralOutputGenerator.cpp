@@ -71,7 +71,7 @@ GeneralOutputGenerator::GeneralOutputGenerator(Variables* a){
 /**
  * get output log
  */
-const std::vector<std::string>& GeneralOutputGenerator::getOutput(){
+const std::vector<std::string>& GeneralOutputGenerator::getOutput() const{
 	return output;
 }
 
